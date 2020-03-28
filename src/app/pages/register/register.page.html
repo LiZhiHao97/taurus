@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form>
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Username</ion-label>
+        <ion-input autocomplete="off" name="username" type="text" [(ngModel)]="postData.name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input autocomplete="off" name="password" type="password" [(ngModel)]="postData.password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <a routerLink="/login">Login</a>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" share="round" color="success" (click)="registerAction()">register</ion-button>
+  </form>
+</ion-content>
