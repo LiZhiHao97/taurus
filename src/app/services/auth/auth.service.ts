@@ -20,7 +20,7 @@ export class AuthService {
   getUserData() {
     this.storageService.get(AuthConstants.AUTH).then(res => {
       this.userDatas.next(res);
-    })
+    });
   }
 
   login(postData: any): Observable<any> {

@@ -46,7 +46,7 @@ export class RegisterPage implements OnInit {
       },
       (err: any) => {
         this.toastService.presentToast('服务端错误');
-      })
+      });
     } else {
       this.toastService.presentToast('用户名密码不能为空');
     }

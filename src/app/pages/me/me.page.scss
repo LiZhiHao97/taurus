@@ -1,0 +1,38 @@
+.username {
+    color: rgba(0, 0, 0, .9);
+    font-weight: 400;
+}
+
+.arrow {
+    height: 100%;
+    text-align: right;
+    font-size: 24px;
+    padding-top: 10px;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    padding: 0;
+
+    li {
+        width: 100%;
+        background: #fff;
+        padding: 10px 20px;
+        margin-bottom: 1px;
+    }
+}
+
+.list-text {
+    color: rgba(0, 0, 0, .7);
+    padding-left: 14px;
+}
+
+.list-count {
+    color: rgba(0, 0, 0, .4);
+    padding-left: 14px;
+}
+
+.item-inner {
+    border: none!important;
+}

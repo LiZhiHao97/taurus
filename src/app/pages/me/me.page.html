@@ -1,9 +1,138 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>me</ion-title>
+    <ion-title>我</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-row>
+        <ion-col size="3">
+          <ion-avatar>
+            <img [(src)]="userInfo.avatar_url" />
+          </ion-avatar>
+        </ion-col>
+        <ion-col size="7">
+          <div class="username">{{userInfo.name}}</div>
+          <div style="margin-top: 8px; font-size: 14px;color: #999">
+            查看个人主页
+          </div>
+        </ion-col>
+        <ion-col size="2">
+          <div class = "arrow">
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
 
+  <ul>
+    <ion-item button>
+      sad
+    </ion-item>
+    <li>
+      <ion-row>
+        <ion-col size="1">
+          <ion-icon name="bulb" style="color: #2c77f6; font-size: 24px;"></ion-icon>
+        </ion-col>
+        <ion-col size="7">
+          <span class="list-text">我的创作</span>
+        </ion-col>
+        <ion-col size="4" style="text-align: right;">
+          <span class="list-count">41个</span>
+        </ion-col>
+      </ion-row>
+    </li>
+    <li>
+      <ion-row>
+        <ion-col size="1">
+          <ion-icon name="heart" style="color: #e35c4c; font-size: 24px;"></ion-icon>
+        </ion-col>
+        <ion-col size="7">
+          <span class="list-text">我赞过的</span>
+        </ion-col>
+        <ion-col size="4" style="text-align: right;">
+          <span class="list-count">41个</span>
+        </ion-col>
+      </ion-row>
+    </li>
+    <li>
+      <ion-row>
+        <ion-col size="1">
+          <ion-icon name="star" style="color: #f7c55f; font-size: 24px;"></ion-icon>
+        </ion-col>
+        <ion-col size="7">
+          <span class="list-text">收藏集</span>
+        </ion-col>
+        <ion-col size="4" style="text-align: right;">
+          <span class="list-count">41个</span>
+        </ion-col>
+      </ion-row>
+    </li>
+    <li>
+      <ion-row>
+        <ion-col size="1">
+          <ion-icon name="eye" style="color: #acb4be; font-size: 24px;"></ion-icon>
+        </ion-col>
+        <ion-col size="7">
+          <span class="list-text">浏览记录</span>
+        </ion-col>
+        <ion-col size="4" style="text-align: right;">
+          <span class="list-count">41个</span>
+        </ion-col>
+      </ion-row>
+    </li>
+    <li>
+      <ion-row>
+        <ion-col size="1">
+          <ion-icon name="pricetags" style="color: #acb4be; font-size: 24px;"></ion-icon>
+        </ion-col>
+        <ion-col size="7">
+          <span class="list-text">标签管理</span>
+        </ion-col>
+        <ion-col size="4" style="text-align: right;">
+          <span class="list-count">105个</span>
+        </ion-col>
+      </ion-row>
+    </li>
+  </ul>
+
+  <ul style="margin-top: 16px;">
+    <li>
+      <ion-row>
+        <ion-col size="1">
+          <ion-icon name="moon" style="color: #acb4be; font-size: 24px;"></ion-icon>
+        </ion-col>
+        <ion-col size="7">
+          <span class="list-text">夜间模式</span>
+        </ion-col>
+        <ion-col size="4" style="text-align: right;">
+          <ion-toggle color="primary"></ion-toggle>
+        </ion-col>
+      </ion-row>
+    </li>
+    <li>
+      <ion-row>
+        <ion-col size="1">
+          <ion-icon name="help-circle" style="color: #acb4be; font-size: 24px;"></ion-icon>
+        </ion-col>
+        <ion-col size="11">
+          <span class="list-text">意见反馈</span>
+        </ion-col>
+      </ion-row>
+    </li>
+    <li>
+      <ion-row>
+        <ion-col size="1">
+          <ion-icon name="settings" style="color: #acb4be; font-size: 24px;"></ion-icon>
+        </ion-col>
+        <ion-col size="11">
+          <span class="list-text">设置</span>
+        </ion-col>
+      </ion-row>
+    </li>
+
+  </ul>
 </ion-content>

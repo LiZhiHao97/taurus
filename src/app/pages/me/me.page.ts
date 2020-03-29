@@ -7,13 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./me.page.scss'],
 })
 export class MePage implements OnInit {
+  userInfo = {};
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+  ) { }
 
   ngOnInit() {
     this.authService.userDatas.subscribe((res: any) => {
-      console.log(res);
-    })
+      this.userInfo = res.user;
+    });
   }
   logoutAction() {
     this.authService.logout();
