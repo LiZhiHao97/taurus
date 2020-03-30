@@ -5,8 +5,8 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-card-content>
+  <ion-card *ngIf="userInfo" (click)="gotoPersonalCenter()">
+    <ion-card-content >
       <ion-row>
         <ion-col size="3">
           <ion-avatar>
@@ -28,111 +28,50 @@
     </ion-card-content>
   </ion-card>
 
-  <ul>
-    <ion-item button>
-      sad
-    </ion-item>
-    <li>
-      <ion-row>
-        <ion-col size="1">
-          <ion-icon name="bulb" style="color: #2c77f6; font-size: 24px;"></ion-icon>
-        </ion-col>
-        <ion-col size="7">
-          <span class="list-text">我的创作</span>
-        </ion-col>
-        <ion-col size="4" style="text-align: right;">
-          <span class="list-count">41个</span>
-        </ion-col>
-      </ion-row>
-    </li>
-    <li>
-      <ion-row>
-        <ion-col size="1">
-          <ion-icon name="heart" style="color: #e35c4c; font-size: 24px;"></ion-icon>
-        </ion-col>
-        <ion-col size="7">
-          <span class="list-text">我赞过的</span>
-        </ion-col>
-        <ion-col size="4" style="text-align: right;">
-          <span class="list-count">41个</span>
-        </ion-col>
-      </ion-row>
-    </li>
-    <li>
-      <ion-row>
-        <ion-col size="1">
-          <ion-icon name="star" style="color: #f7c55f; font-size: 24px;"></ion-icon>
-        </ion-col>
-        <ion-col size="7">
-          <span class="list-text">收藏集</span>
-        </ion-col>
-        <ion-col size="4" style="text-align: right;">
-          <span class="list-count">41个</span>
-        </ion-col>
-      </ion-row>
-    </li>
-    <li>
-      <ion-row>
-        <ion-col size="1">
-          <ion-icon name="eye" style="color: #acb4be; font-size: 24px;"></ion-icon>
-        </ion-col>
-        <ion-col size="7">
-          <span class="list-text">浏览记录</span>
-        </ion-col>
-        <ion-col size="4" style="text-align: right;">
-          <span class="list-count">41个</span>
-        </ion-col>
-      </ion-row>
-    </li>
-    <li>
-      <ion-row>
-        <ion-col size="1">
-          <ion-icon name="pricetags" style="color: #acb4be; font-size: 24px;"></ion-icon>
-        </ion-col>
-        <ion-col size="7">
-          <span class="list-text">标签管理</span>
-        </ion-col>
-        <ion-col size="4" style="text-align: right;">
-          <span class="list-count">105个</span>
-        </ion-col>
-      </ion-row>
-    </li>
-  </ul>
 
-  <ul style="margin-top: 16px;">
-    <li>
-      <ion-row>
-        <ion-col size="1">
-          <ion-icon name="moon" style="color: #acb4be; font-size: 24px;"></ion-icon>
-        </ion-col>
-        <ion-col size="7">
-          <span class="list-text">夜间模式</span>
-        </ion-col>
-        <ion-col size="4" style="text-align: right;">
-          <ion-toggle color="primary"></ion-toggle>
-        </ion-col>
-      </ion-row>
-    </li>
-    <li>
-      <ion-row>
-        <ion-col size="1">
-          <ion-icon name="help-circle" style="color: #acb4be; font-size: 24px;"></ion-icon>
-        </ion-col>
-        <ion-col size="11">
-          <span class="list-text">意见反馈</span>
-        </ion-col>
-      </ion-row>
-    </li>
-    <li>
-      <ion-row>
-        <ion-col size="1">
-          <ion-icon name="settings" style="color: #acb4be; font-size: 24px;"></ion-icon>
-        </ion-col>
-        <ion-col size="11">
-          <span class="list-text">设置</span>
-        </ion-col>
-      </ion-row>
-    </li>
+  
 
-  </ul>
+  <ion-item button detail=false lines='none' *ngFor="let item of list" style="margin-bottom: 1px;">
+    <div class="left">
+      <ion-icon [(name)]="item.icon" [ngStyle]="{'color':item.color,'font-size': '24px','margin-top': '2px'}"></ion-icon>
+    </div>
+    <div class="medium">
+      <span class="list-text">{{item.title}}</span>
+    </div>
+    <div class="right">
+      <span class="list-count">{{item.count}}</span>
+    </div>
+  </ion-item>
+
+  <ion-item button detail=false lines='none' style="margin-top:16px;margin-bottom: 1px;">
+    <div class="left">
+      <ion-icon name="moon" [ngStyle]="{'color':'#acb4be','font-size': '24px','margin-top': '2px'}"></ion-icon>
+    </div>
+    <div class="medium">
+      <span class="list-text">夜间模式</span>
+    </div>
+    <div class="right">
+      <ion-toggle color="primary"></ion-toggle>
+    </div>
+  </ion-item>
+  <ion-item button detail=false lines='none' style="margin-bottom: 1px;">
+    <div class="left">
+      <ion-icon name="help-circle" [ngStyle]="{'color':'#acb4be','font-size': '24px','margin-top': '2px'}"></ion-icon>
+    </div>
+    <div class="medium">
+      <span class="list-text">意见反馈</span>
+    </div>
+    <div class="right">
+    </div>
+  </ion-item>
+  <ion-item button detail=false lines='none' style="margin-bottom: 1px;">
+    <div class="left">
+      <ion-icon name="settings" [ngStyle]="{'color':'#acb4be','font-size': '24px','margin-top': '2px'}"></ion-icon>
+    </div>
+    <div class="medium">
+      <span class="list-text">设置</span>
+    </div>
+    <div class="right">
+    </div>
+  </ion-item>
 </ion-content>

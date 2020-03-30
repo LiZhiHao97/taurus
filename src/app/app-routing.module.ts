@@ -19,6 +19,10 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'personal-center/:id',
+    loadChildren: () => import('./pages/personal-center/personal-center.module').then( m => m.PersonalCenterPageModule)
   }
 ];
 @NgModule({

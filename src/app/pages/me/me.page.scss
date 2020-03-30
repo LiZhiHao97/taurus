@@ -36,3 +36,21 @@ ul {
 .item-inner {
     border: none!important;
 }
+
+.left {
+    width: 30px;
+    padding: 10px 0;
+    padding-left: 6px;
+}
+
+.right {
+    width: 100px;
+    text-align: right;
+    padding: 10px 0;
+    padding-right: 14px;
+}
+
+.medium {
+    flex: 1;
+    padding: 10px 0;
+}

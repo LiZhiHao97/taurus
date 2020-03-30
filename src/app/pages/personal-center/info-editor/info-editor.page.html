@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>编辑资料</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="userDatas">
+  <div style="padding: 20px 0;">
+    <div style="padding: 0 16px;">
+      <ion-avatar style="border: 3px solid #f4f6f9; width: 80px; height: 80px;">
+        <img [src]="userDatas.avatar_url">
+      </ion-avatar>
+    </div>
+    <h3 style="padding: 0 16px;">基本资料</h3>
+    <ion-item>
+      <ion-label position="stacked">用户名</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">一句话介绍</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+  </div>
+</ion-content>

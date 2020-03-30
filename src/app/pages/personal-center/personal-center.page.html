@@ -1,0 +1,55 @@
+<ion-header *ngIf="userDatas">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{userDatas.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="userDatas">
+  <div class="top">
+    <ion-row>
+      <ion-col size="4">
+        <ion-avatar style="border: 3px solid #f4f6f9; width: 80px; height: 80px;">
+          <img [src]="userDatas.avatar_url">
+        </ion-avatar>
+      </ion-col>
+      <ion-col size="8">
+          <div style="font-weight: 500; color: rgba(0, 0, 0, 0.9); font-size: 20px; padding-top: 8px;">
+            {{userDatas.name}}
+          </div>
+          <div style="font-size: 14px; padding-top: 8px; color: #999;">
+            {{userDatas.headline.length ? userDatas.headline : "这人很懒，什么也没说"}}
+          </div>
+      </ion-col>
+    </ion-row>
+    <div style="padding-top: 14px; padding-left: 14px;">
+      <div class="info-item">
+        <div style="font-weight: 500; font-size: 16px">
+          11
+        </div>
+        <div style="color: #999; font-size: 13px;">
+          关注
+        </div>
+      </div>
+      <div class="info-item">
+        <div style="font-weight: 500; font-size: 16px">
+          20
+        </div>
+        <div style="color: #999; font-size: 13px;">
+          粉丝
+        </div>
+      </div>
+      <div class="info-item">
+        <div style="font-weight: 500; font-size: 16px">
+          30
+        </div>
+        <div style="color: #999; font-size: 13px;">
+          收藏
+        </div>
+      </div>
+      <ion-button color="primary" style="float: right; height: 32px;"  size="small" color="primary" (click)="infoEdit()">编辑资料</ion-button>
+    </div>
+  </div>
+</ion-content>
