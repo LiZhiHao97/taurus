@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar style="padding-top: 16px;">
+    <ion-buttons slot="start">
+      <ion-button color="light" (click)="doClose()">
+        <ion-icon name="arrow-back" style="color: #999"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-searchbar placeholder="搜索标签" (ionChange)="change()" [(ngModel)]="searchContent"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <div style="padding: 10px">
+    <div *ngIf="tags.length; then thenBlock else elseBlock"></div>
+  </div>
+  <div class="tag-container">
+    <Tag [selected]="true" *ngFor="let tag of tags" (onChange)="deleteTag(tag)">
+      {{tag.name}}
+    </Tag>
+  </div>
+  <ion-list>
+    <ion-item style="margin-top: 10px;" lines="none" *ngFor="let item of searchTags">
+      <ion-avatar slot="start">
+        <img [src]="item.avatar_url.length ? item.avatar_url : 'https://pic3.zhimg.com/e82bab09c_im.jpg'">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{item.name}}</h2>
+      </ion-label>
+      <ion-button color="danger" (click)="addTag(item)">添加</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ng-template #thenBlock>
+  <div style="color: #999">
+    还可以添加{{5 - tags.length}}个话题
+  </div>
+</ng-template>
+<ng-template #elseBlock>
+  <div style="color: #999">
+    至少添加一个话题
+  </div>
+</ng-template>

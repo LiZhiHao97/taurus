@@ -9,9 +9,14 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
-  post(serviceName: string, data: any) {
+  post(serviceName: string, data: any, token = '') {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const options = { headers, withCredintials: false };
+
+    if (token.length) {
+      options.headers = options.headers.set('Authorization', 'Bearer ' + token);
+      console.log(options.headers);
+    }
 
     const url = environment.apiUrl + serviceName;
     return this.http.post(url, JSON.stringify(data), options);

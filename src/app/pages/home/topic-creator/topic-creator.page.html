@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="light" (click)="doClose()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button color="light" (click)="create()">
+        发布
+      </ion-button>
+    </ion-buttons>
+    <ion-title slot="start">创建话题</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <InputItem
+    [clear]="true"
+    [placeholder]="'标题'"
+    [moneyKeyboardAlign]="'left'"
+    [content]="titleIcon"
+    [(ngModel)]="title"
+  >
+  </InputItem>
+  <TextareaItem [title]="descIcon" [autoHeight]="true" [maxlength]="150" [labelNumber]="5" [placeholder]="'简介'" [(ngModel)]="desc"> </TextareaItem>
+  <div style="background: #fff; min-height: 80px; padding-left: 15px;">
+    <div style="display: flex; padding: 10px 0; border-top: 1px solid #eaeaea;">
+      <div style="width: 40px;">
+        <ion-icon name="pricetag" style="font-size: 20px; color:#999"></ion-icon>
+      </div>
+      <div style="flex: 1;">
+        <div>
+          <a (click)="addTags()" style="color: #108ee9">
+            +添加标签
+          </a>
+        </div>
+        <div class="tag-container">
+          <Tag [selected]="true" *ngFor="let tag of tags" (onChange)="deleteTag(tag)">
+            {{tag.name}}
+          </Tag>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ng-template #titleIcon>
+  <ion-icon name="reorder-two" style="font-size: 20px; color:#999;"></ion-icon>
+</ng-template>
+<ng-template #descIcon>
+  <ion-icon name="create" style="font-size: 20px; color:#999"></ion-icon>
+</ng-template>

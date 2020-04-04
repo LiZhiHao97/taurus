@@ -1,3 +1,6 @@
+import { AddTagsPage } from './topic-creator/add-tags/add-tags.page';
+import { TopicCreatorPage } from './topic-creator/topic-creator.page';
+import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,8 +16,17 @@ import { HomePage } from './home.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    SharedModule,
   ],
-  declarations: [HomePage]
+  declarations: [
+    HomePage,
+    TopicCreatorPage,
+    AddTagsPage
+  ],
+  entryComponents: [
+    TopicCreatorPage,
+    AddTagsPage
+  ],
 })
 export class HomePageModule {}

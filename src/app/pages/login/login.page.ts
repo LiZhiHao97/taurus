@@ -46,6 +46,7 @@ export class LoginPage implements OnInit {
           this.storageService.store(AuthConstants.AUTH, res.userData);
           this.router.navigate(['tabs']);
         }
+        this.toastService.presentToast('登录成功');
       },
       (error: any) => {
         console.log(error);

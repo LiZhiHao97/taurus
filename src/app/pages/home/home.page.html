@@ -1,9 +1,44 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>home</ion-title>
+  <ion-toolbar style="padding-top: 10px;">
+    <ion-searchbar color="primary" animated=true placeholder="搜索话题、用户、标签" style="width: 90%; float: left;"></ion-searchbar>
+    <ion-icon name="pricetag" class="top-header-tag" style="font-size: 2em; float: right; margin-top: 4px; margin-right: 2px;"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <Tabs
+    [page]="3"
+    [useOnPan]="false"
+    [activeTab]="index"
+    (onChange)="onChange($event)"
+    (onTabClick)="onTabClick($event)"
+  >
+    <TabPane [title]="'关注'">
+      <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          pullingIcon="refresh"
+          refreshingSpinner="crescent">
+        </ion-refresher-content>
+      </ion-refresher>
+    </TabPane>
+    <TabPane [title]="'推荐'">
+      <ion-card>
+        <h2>话题标题</h2>
+        <ion-item>
+          <ion-avatar>
+            <img src="">
+          </ion-avatar>
+        </ion-item>
+        <p>回答内容</p>
+      </ion-card>
+    </TabPane>
+    <TabPane [title]="'热榜'">
 
+    </TabPane>
+  </Tabs>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="createTopic()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

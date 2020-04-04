@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" color="light"></ion-back-button>
+    </ion-buttons>
     <ion-title>编辑资料</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -7,18 +10,35 @@
 <ion-content *ngIf="userDatas">
   <div style="padding: 20px 0;">
     <div style="padding: 0 16px;">
-      <ion-avatar style="border: 3px solid #f4f6f9; width: 80px; height: 80px;">
+      <ion-avatar style="border: 3px solid #f4f6f9; width: 80px; height: 80px;" (click)="presentActionSheet()">
         <img [src]="userDatas.avatar_url">
       </ion-avatar>
     </div>
     <h3 style="padding: 0 16px;">基本资料</h3>
     <ion-item>
       <ion-label position="stacked">用户名</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="userDatas.name"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">一句话介绍</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="userDatas.headline"></ion-input>
     </ion-item>
+  </div>
+  <ion-radio-group allow-empty-selection [(ngModel)]="userDatas.gender">
+    <ion-list-header>
+      <ion-label style="margin-top: 0; font-size: 14px; font-weight: 400; color: #000;">性别</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>男</ion-label>
+      <ion-radio slot="end" color="primary" value="male"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>女</ion-label>
+      <ion-radio slot="end" color="secondary" value="female"></ion-radio>
+    </ion-item>
+  </ion-radio-group>
+  <div style="margin: 0 16px;">
+    <ion-button color="medium" expand="block" style="margin-top: 30px;" (click)="cancel()">取消</ion-button>
+    <ion-button color="danger" expand="block" style="margin-top: 10px;" (click)="save()">保存</ion-button>
   </div>
 </ion-content>
