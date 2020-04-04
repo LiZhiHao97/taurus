@@ -1,0 +1,26 @@
+<ion-card (click)="showDetail()" style="margin: 12px 0; padding: 10px; box-shadow: 0 0 2px rgba(0, 0, 0, .3); border-radius: 0;"> 
+  <div class="userInfoWrapper">
+    <ion-avatar>
+      <img [src]="operator.avatar_url" style="width: 40px; height: 40px;">
+    </ion-avatar>
+    <div style="flex: 1; padding-top: 2px;">
+      <div style="color: #000; font-size: 16px;">{{operator.name}}</div>
+      <div style="font-size: 12px; color: #999;">{{operation}}</div>
+    </div>
+    <div style="color: #999; padding-top: 12px;">
+      {{time}}
+    </div>
+  </div>
+  <h2 class="title" style="margin-top: 4px; margin-bottom: 6px; font-size: 16px; color: #000; font-weight: 400;">{{topicTitle}}</h2>
+  <p class="content">{{answerContent}}</p>
+  <div style="display: flex; padding-top: 12px; padding-bottom: 4px;">
+    <div style="color: #999; width: 80px;">
+      <ion-icon name="heart-outline" style="font-size: 18px;"></ion-icon>
+      <span class="count" style="padding-left: 6px;">{{voteCount}}</span>
+    </div>
+    <div style="color: #999">
+      <ion-icon name="chatbubble-outline" style="font-size: 18px;"></ion-icon>
+      <span class="count" style="padding-left: 6px;">{{commentCount}}</span>
+    </div>
+  </div>
+</ion-card>

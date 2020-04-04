@@ -22,15 +22,39 @@
       </ion-refresher>
     </TabPane>
     <TabPane [title]="'推荐'">
-      <ion-card>
-        <h2>话题标题</h2>
-        <ion-item>
-          <ion-avatar>
-            <img src="">
-          </ion-avatar>
-        </ion-item>
-        <p>回答内容</p>
-      </ion-card>
+      <app-answer-preview
+        [topicTitle]="testData.topicTitle"
+        [answerContent]="testData.answerContent"
+        [operation]="testData.operation"
+        [operator]="testData.operator"
+        [voteCount]="testData.voteCount"
+        [commentCount]="testData.commentCount"
+        [time]="testData.time"
+        [answerId]="testData.answerId"
+      >
+      </app-answer-preview>
+      <app-answer-preview
+        [topicTitle]="testData.topicTitle"
+        [answerContent]="testData.answerContent"
+        [operation]="testData.operation"
+        [operator]="testData.operator"
+        [voteCount]="testData.voteCount"
+        [commentCount]="testData.commentCount"
+        [time]="testData.time"
+        [answerId]="testData.answerId"
+      >
+      </app-answer-preview>
+      <app-answer-preview
+        [topicTitle]="testData.topicTitle"
+        [answerContent]="testData.answerContent"
+        [operation]="testData.operation"
+        [operator]="testData.operator"
+        [voteCount]="testData.voteCount"
+        [commentCount]="testData.commentCount"
+        [time]="testData.time"
+        [answerId]="testData.answerId"
+      >
+      </app-answer-preview>
     </TabPane>
     <TabPane [title]="'热榜'">
 

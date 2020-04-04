@@ -76,7 +76,7 @@
   --ion-color-light-tint: #f5f6f9;
 }
 
-@media (prefers-color-scheme: primary) {
+@media (prefers-color-scheme: secondary) {
   /*
    * Dark Colors
    * -------------------------------------------
@@ -227,3 +227,6 @@
     --color: white;
   }
 }
+
+@import "theme.default";
+@import "../global.scss";
