@@ -10,6 +10,9 @@ export class HttpService {
   constructor(private http: HttpClient) { }
 
   post(serviceName: string, data: any, token = '') {
+    console.log(serviceName)
+    console.log(data)
+    console.log(token)
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const options = { headers, withCredintials: false };
 

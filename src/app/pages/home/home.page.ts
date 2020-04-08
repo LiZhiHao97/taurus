@@ -19,7 +19,8 @@ export class HomePage implements OnInit {
     voteCount: 998,
     commentCount: 1024,
     time: '1小时前',
-    answerId: 'asdasd'
+    answerId: '5e7868613687b1dcb31cb654',
+    topicId: '5e76151b687e4a83e1d3009e'
   }
   index = 1;
   constructor(

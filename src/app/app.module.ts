@@ -11,6 +11,8 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { EmojiProvider } from './providers/emoji/emoji';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +28,8 @@ import { FormsModule } from '@angular/forms';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    EmojiProvider
   ],
   bootstrap: [AppComponent]
 })

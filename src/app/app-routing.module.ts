@@ -22,7 +22,27 @@ const routes: Routes = [
   },
   {
     path: 'personal-center/:id',
+    canActivate: [HomeGuard],
+    resolve: {
+      userData: UserDataResolver
+    },
     loadChildren: () => import('./pages/personal-center/personal-center.module').then( m => m.PersonalCenterPageModule)
+  },
+  {
+    path: 'topic/:tid/answer-detail/:aid',
+    canActivate: [HomeGuard],
+    resolve: {
+      userData: UserDataResolver
+    },
+    loadChildren: () => import('./pages/answer-detail/answer-detail.module').then( m => m.AnswerDetailPageModule)
+  },
+  {
+    path: 'topic-detail/:id',
+    canActivate: [HomeGuard],
+    resolve: {
+      userData: UserDataResolver
+    },
+    loadChildren: () => import('./pages/topic-detail/topic-detail.module').then( m => m.TopicDetailPageModule)
   }
 ];
 @NgModule({

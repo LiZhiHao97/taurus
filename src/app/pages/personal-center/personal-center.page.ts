@@ -13,12 +13,12 @@ export class PersonalCenterPage implements OnInit {
   userDatas;
   constructor(
     private userService: UserService,
-    private activateRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private modalController: ModalController
   ) { }
 
   ngOnInit() {
-    this.activateRoute.params.subscribe(params => {
+    this.activatedRoute.params.subscribe(params => {
       this.userService.findById(params.id).subscribe(res => {
         this.userDatas = res;
       });

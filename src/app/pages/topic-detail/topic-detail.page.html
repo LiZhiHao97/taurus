@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" color="light"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" ios="ellipsis-vertical" md="ellipsis-vertical" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title *ngIf="topicData">{{topicData.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card style="margin: 0 0 10px 0; box-shadow: none;" *ngIf="topicData">
+    <div style="padding: 12px;">
+      <div style="display: flex;">
+        <ion-avatar style="border: 1px solid #f1f1f1;">
+          <img [src]="topicData.sponsor.avatar_url">
+        </ion-avatar>
+        <div style="padding-left: 10px; padding-top: 2px; flex: 1;">
+          <div style="color: rgba(0, 0, 0, .9)">{{topicData.sponsor.name}}</div>
+          <div style="color: #b9c1cb; font-size: 13px; padding-top: 1px;">{{topicData.sponsor.headline}}·1小时前</div>
+        </div>
+        <div style="padding-top: 9px;" (click)="follow()">
+          <button style="width: 78px; height: 30px; line-height: 26px; color: #66c33a; border: 1px solid #66c33a;background: #fff;border-radius: 4px;">
+            + 关注话题
+          </button>
+        </div>
+        <!-- <div style="padding-top: 10px; padding-left: 10px;">
+          <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-horizontal"  style="font-size: 24px; color: #b9c1cb;"></ion-icon>
+        </div> -->
+      </div>
+      <div style="padding-top: 10px;color: #1a1a1c;" [innerHTML]="topicData.description">
+      </div>
+    </div>
+    <ion-row style="border-top: 1px solid #f3f5f8; padding: 10px; color: #99a4b0;">
+      <ion-col size="4" style="text-align: center;">
+        <ion-icon name="flame-outline" style="font-size: 24px; margin-right: 2px;"></ion-icon>
+        <span style="font-size: 18px; position: relative; bottom: 5px;margin: 2px;">87</span>
+      </ion-col>
+      <ion-col size="4" style="text-align: center;">
+        <ion-icon name="eye-outline" style="font-size: 24px; margin-right: 2px;"></ion-icon>
+        <span  style="font-size: 18px; position: relative; bottom: 5px;margin: 2px;">96</span>
+      </ion-col>
+      <ion-col size="4" style="text-align: center;">
+        <ion-icon name="person-add-outline" style="font-size: 24px; margin-right: 2px;"></ion-icon>
+        <span style="font-size: 18px; position: relative; bottom: 5px;margin: 2px;">52</span>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  
+  <div *ngIf="answers">
+    <app-answer-item
+      *ngFor="let item of answers"
+      [data]="item"
+    >
+      
+    </app-answer-item>
+  </div>
+  
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="createTopic()">
+      <ion-icon name="create-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { NgZorroAntdMobileModule } from 'ng-zorro-antd-mobile';
 
 @NgModule({
-  imports: [NgZorroAntdMobileModule
+  imports: [
+    NgZorroAntdMobileModule
   ],
-  exports: [NgZorroAntdMobileModule
+  exports: [
+    NgZorroAntdMobileModule
   ]
 })
 export class SharedModule {}

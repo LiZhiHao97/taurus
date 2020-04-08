@@ -1,6 +1,6 @@
 import { PhotoService } from './../../../services/photo/photo.service';
 import { Component, OnInit } from '@angular/core';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-info-editor',
@@ -11,13 +11,18 @@ export class InfoEditorPage implements OnInit {
   userDatas;
   constructor(
     private actionSheetController: ActionSheetController,
-    private photoService: PhotoService
+    private photoService: PhotoService,
+    private navParams: NavParams
   ) { }
 
   ngOnInit() {
 
   }
 
+  doClose() {
+    this.navParams.data.modal.dismiss();
+  }
+  
   cancel() {
 
   }
@@ -25,6 +30,7 @@ export class InfoEditorPage implements OnInit {
   save() {
     console.log(this.userDatas);
   }
+  
 
   async presentActionSheet() {
     const actionSheet = await this.actionSheetController.create({

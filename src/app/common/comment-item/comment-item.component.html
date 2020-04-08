@@ -1,0 +1,66 @@
+<ion-card style="margin: 0 0 1px 0; box-shadow: none;">
+  <div style="padding: 12px;">
+    <div style="display: flex;">
+      <ion-avatar style="border: 1px solid #f1f1f1;">
+        <img [src]="data.commentator.avatar_url">
+      </ion-avatar>
+      <div style="padding-left: 10px; padding-top: 4px; flex: 1;">
+        <div style="display: flex;">
+          <div style="color: rgba(0, 0, 0, .9); flex: 1;">{{data.commentator.name}}</div>
+          <div>
+            <ion-icon name="chatbubble-outline" style="color: #999;position: relative; top: 1px;" (click)="showModal()"></ion-icon>
+          </div>
+        </div>
+        <div style="color: #b9c1cb; font-size: 13px; padding-top: 4px;">{{data.commentator.headline}}·1小时前</div>
+        <div class="content" style="padding-top: 10px;color: #1a1a1c;">
+          {{data.content}}
+        </div>
+        <div class="reply" *ngIf="subComments.length">
+          <div *ngFor="let subComment of subComments" (click)="showModal2(subComment.commentator._id)" style="padding: 2px 0;">
+            <span style="color: #000;">
+              {{subComment.commentator.name}}
+              <span *ngIf="subComment.replyTo._id !== data.commentator._id" style="color: #999">回复</span>
+              <span *ngIf="subComment.replyTo._id !== data.commentator._id">{{subComment.replyTo.name}}</span>
+              :
+            </span>
+            {{subComment.content}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-card>
+
+<Modal *ngIf="data" [(ngModel)]="isShowModal" [transparent]="true" [title]="'回复 ' + data.commentator.name" [footer]="footer">
+  <div [ngStyle]="{ height: 100, overflow: 'scroll' }">
+    <TextareaItem
+      [placeholder]="'请输入回复的内容'"
+      [autoFocus]="true"
+      [autoHeight]="true"
+      [title]="emoji"
+      [(ngModel)]="replyContent"
+    ></TextareaItem>
+    <app-emojipicker *ngIf="isOpenEmojiPicker" (changed)="onChanged($event)"></app-emojipicker>
+    <WhiteSpace></WhiteSpace>
+    <div Button [type]="'primary'" (click)="reply()">确认</div>
+  </div>
+</Modal>
+
+<Modal *ngIf="data" [(ngModel)]="isShowModal2" [transparent]="true" [title]="'回复 ' + data.commentator.name" [footer]="footer">
+  <div [ngStyle]="{ height: 100, overflow: 'scroll' }">
+    <TextareaItem
+      [placeholder]="'请输入回复的内容'"
+      [autoFocus]="true"
+      [autoHeight]="true"
+      [title]="emoji"
+      [(ngModel)]="replyContent"
+    ></TextareaItem>
+    <app-emojipicker *ngIf="isOpenEmojiPicker" (changed)="onChanged($event)"></app-emojipicker>
+    <WhiteSpace></WhiteSpace>
+    <div Button [type]="'primary'" (click)="subReply()">确认</div>
+  </div>
+</Modal>
+
+<ng-template #emoji>
+  <ion-icon name="happy-outline" style="color: #999; font-size: 24px; position: relative; top: 6px;" (click)="switchEmojiPicker()"></ion-icon>
+</ng-template>

@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="light" (click)="doClose()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button color="light" (click)="create()">
+        发布
+      </ion-button>
+    </ion-buttons>
+    <ion-title slot="start">回答</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <app-editor (onPostData)="PostData($event)"></app-editor>
+  </div>
+</ion-content>

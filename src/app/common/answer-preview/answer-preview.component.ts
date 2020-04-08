@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -13,14 +14,20 @@ export class AnswerPreviewComponent implements OnInit {
   @Input() voteCount: number;
   @Input() commentCount: number;
   @Input() time: string;
-  @Input() answerId: number;
+  @Input() answerId: string;
+  @Input() topicId: string;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit() {}
-
-  showDetail() {
-    console.log(1);
+  ngOnInit() {
+    this.answerContent = this.answerContent.replace(/<img(.*?)>/g, "[图片]");
   }
-  
+
+  gotoAnswerDetailPage() {
+    this.router.navigate([`topic/${this.topicId}/answer-detail/${this.answerId}`]);
+  }
+
+  gotoTopicDetailPage() {
+    this.router.navigate([`/topic-detail/${this.topicId}`]);
+  }
 }

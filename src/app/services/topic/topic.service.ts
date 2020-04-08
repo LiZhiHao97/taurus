@@ -13,4 +13,8 @@ export class TopicService {
   create(postData: any, token) {
     return this.httpService.post('topics', postData, token);
   }
+
+  findById(id) {
+    return this.httpService.get(`topics/${id}?fields=labels`)
+  }
 }

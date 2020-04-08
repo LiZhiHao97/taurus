@@ -1,0 +1,49 @@
+<ion-card style="margin: 0 0 10px 0; box-shadow: none;">
+  <div style="padding: 12px;">
+    <div style="display: flex;">
+      <ion-avatar style="border: 1px solid #f1f1f1;">
+        <img [src]="data.answerer.avatar_url">
+      </ion-avatar>
+      <div style="padding-left: 10px; padding-top: 2px; flex: 1;">
+        <div style="color: rgba(0, 0, 0, .9)">{{data.answerer.name}}</div>
+        <div style="color: #b9c1cb; font-size: 13px; padding-top: 1px;">{{data.answerer.headline}}·1小时前</div>
+      </div>
+      <div style="padding-top: 9px;" (click)="follow()">
+        <button style="width: 78px; height: 30px; line-height: 26px; color: #66c33a; border: 1px solid #66c33a;background: #fff;border-radius: 4px;">
+          + 关注
+        </button>
+      </div>
+      <!-- <div style="padding-top: 10px; padding-left: 10px;">
+        <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-horizontal"  style="font-size: 24px; color: #b9c1cb;"></ion-icon>
+      </div> -->
+    </div>
+    <div class="content" style="padding-top: 10px;color: #1a1a1c;" (click)="gotoAnswerDetailPage()" [innerHTML]="data.content">
+    </div>
+  </div>
+  <ion-row style="border-top: 1px solid #f3f5f8;">
+    <ion-col size="4" style="padding: 0;">
+      <ion-item button lines="none" detailIcon="none">
+        <div style=" text-align: center;  color: #99a4b0; padding: 10px;">
+          <ion-icon name="heart-outline" style="font-size: 18px;"></ion-icon>
+          <span style="font-size: 14px;margin: 2px; position: relative; bottom: 3px;">{{data.voteCount}}</span>
+        </div>
+      </ion-item>
+    </ion-col>
+    <ion-col size="4" style="padding: 0;">
+      <ion-item button lines="none" detailIcon="none" (click)="gotoAnswerDetailPage()">
+        <div style=" text-align: center;  color: #99a4b0; padding: 10px;">
+          <ion-icon name="chatbubble-outline" style="font-size: 18px;"></ion-icon>
+          <span style="font-size: 14px;margin: 2px; position: relative; bottom: 3px;">{{data.replyCount}}</span>
+        </div>
+      </ion-item>
+    </ion-col>
+    <ion-col size="4" style="padding: 0;">
+      <ion-item button lines="none" detailIcon="none">
+        <div style=" text-align: center;  color: #99a4b0; padding: 10px;">
+          <ion-icon name="share-social-outline" style="font-size: 18px;"></ion-icon>
+          <span style="font-size: 14px; margin: 2px; position: relative; bottom: 3px;">分享</span>
+        </div>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+</ion-card>
