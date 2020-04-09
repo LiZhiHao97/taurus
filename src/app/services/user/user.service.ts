@@ -13,4 +13,8 @@ export class UserService {
   findById(id) {
     return this.httpService.get('users/' + id);
   }
+
+  update(postData, id, token) {
+    return this.httpService.patch(`users/${id}`, postData, token);
+  }
 }

@@ -1,16 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { MePage } from './me.page';
+import { ChatPage } from './chat.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: MePage
-  },
-  {
-    path: 'tag-setting',
-    loadChildren: () => import('./tag-setting/tag-setting.module').then( m => m.TagSettingPageModule)
+    component: ChatPage
   }
 ];
 
@@ -18,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class MePageRoutingModule {}
+export class ChatPageRoutingModule {}

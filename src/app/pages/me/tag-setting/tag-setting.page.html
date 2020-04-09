@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" color="light"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button color="light" (click)="save()">
+        保存
+      </ion-button>
+    </ion-buttons>
+    <ion-title>标签管理</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="padding: 10px 20px; border-bottom: 1px solid #f4f6f9;">
+    <h2>请选择感兴趣的标签</h2>
+    <h5 style="font-size: 14px; color: #999;">我们将根据您的选择进行个性化推荐</h5>
+  </div>
+  <div *ngIf="allTags" style="padding-top: 10px;">
+    <div *ngFor="let type of allTags">
+      <h3 style="font-size: 16px; font-weight: 400; margin: 0; padding: 10px 20px;">{{type.name}}</h3>
+      <div class="tag-container">
+        <Tag *ngFor="let item of type.items" [selected]="item.selected" (click)="change(item)">{{item.name}}</Tag>
+      </div>
+    </div>
+  </div>
+</ion-content>

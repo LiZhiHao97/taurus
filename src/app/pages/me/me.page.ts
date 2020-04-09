@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-me',
@@ -9,42 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MePage implements OnInit {
   userInfo;
-  list = [
-    {
-      icon: 'bulb',
-      title: '我的创作',
-      color: '#2c77f6',
-      url: '',
-      count: '3个'
-    },
-    {
-      icon: 'heart',
-      title: '我赞过的',
-      color: '#e35c4c',
-      url: '',
-      count: '35个'
-    },
-    {
-      icon: 'star',
-      title: '收藏集',
-      color: '#f7c55f',
-      url: '',
-      count: '41个'
-    },
-    {
-      icon: 'eye',
-      title: '浏览记录',
-      color: '#acb4be',
-      url: ''
-    },
-    {
-      icon: 'pricetags',
-      title: '标签管理',
-      color: '#acb4be',
-      url: '',
-      count: '105个'
-    },
-  ];
+  token;
   constructor(
     private authService: AuthService,
     private router: Router
@@ -53,14 +19,16 @@ export class MePage implements OnInit {
   ngOnInit() {
     this.authService.userDatas.subscribe((res: any) => {
       this.userInfo = res.user;
+      this.token = res.token;
     });
   }
+
   logoutAction() {
     this.authService.logout();
   }
 
   gotoPage(route) {
-    this.router.navigate([route]);
+    this.router.navigate([`/tabs/me/${route}`]);
   }
 
   gotoPersonalCenter() {

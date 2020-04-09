@@ -10,9 +10,6 @@ export class HttpService {
   constructor(private http: HttpClient) { }
 
   post(serviceName: string, data: any, token = '') {
-    console.log(serviceName)
-    console.log(data)
-    console.log(token)
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const options = { headers, withCredintials: false };
 
@@ -28,5 +25,18 @@ export class HttpService {
   get(serviceName: string) {
     const url = environment.apiUrl + serviceName;
     return this.http.get(url);
+  }
+
+  patch(serviceName: string, data: any, token = '') {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const options = { headers, withCredintials: false };
+
+    if (token.length) {
+      options.headers = options.headers.set('Authorization', 'Bearer ' + token);
+      console.log(options.headers);
+    }
+
+    const url = environment.apiUrl + serviceName;
+    return this.http.patch(url, JSON.stringify(data), options);
   }
 }

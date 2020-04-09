@@ -43,6 +43,10 @@ const routes: Routes = [
       userData: UserDataResolver
     },
     loadChildren: () => import('./pages/topic-detail/topic-detail.module').then( m => m.TopicDetailPageModule)
+  },
+  {
+    path: 'chat/:id',
+    loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule)
   }
 ];
 @NgModule({
