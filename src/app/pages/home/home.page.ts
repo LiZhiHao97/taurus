@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { TopicCreatorPage } from './topic-creator/topic-creator.page';
 import { ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
@@ -22,9 +23,10 @@ export class HomePage implements OnInit {
     answerId: '5e7868613687b1dcb31cb654',
     topicId: '5e76151b687e4a83e1d3009e'
   }
-  index = 1;
+  index = 0;
   constructor(
-    private modalController: ModalController
+    private modalController: ModalController,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -53,6 +55,10 @@ export class HomePage implements OnInit {
       console.log('Async operation has ended');
       event.target.complete();
     }, 2000);
+  }
+
+  gotoSearchPage() {
+    this.router.navigate(['/search']);
   }
 
 }

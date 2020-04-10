@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" color="light" defaultHref="/tabs/me"></ion-back-button>
+    </ion-buttons>
+    <ion-title>设置</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="gotoPage('settings')">
+    <div class="medium">
+      邮箱
+    </div>
+    <div class="right" style="width: 200px;">
+      <span class="list-count">
+        940166841@qq.com
+      </span>
+    </div>
+  </ion-item>
+  <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="gotoPage('settings')">
+    <div class="medium">
+      手机号
+    </div>
+    <div class="right" style="width: 200px;">
+      <span class="list-count">
+        13868224404
+      </span>
+    </div>
+  </ion-item>
+  <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="gotoPage('settings')">
+    <div class="medium">
+      修改密码
+    </div>
+    <div class="right">
+    </div>
+  </ion-item>
+  <ion-item button detail=false lines='none' style="margin-top: 10px; margin-bottom: 1px;" (click)="showMsg('清除成功')">
+    清除缓存
+  </ion-item>
+  <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="gotoPage('settings')">
+    <div class="medium">
+      不接收他人私信
+    </div>
+    <div class="right">
+      <ion-toggle color="primary" (ionChange)="toggleChange()"></ion-toggle>
+    </div>
+  </ion-item>
+  <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="gotoPage('settings')">
+    <div class="medium">
+      移动网络下首页不显示图片
+    </div>
+    <div class="right">
+      <ion-toggle color="primary" checked (ionChange)="toggleChange()"></ion-toggle>
+    </div>
+  </ion-item>
+  <ion-item button detail=false lines='none' style="margin-top: 10px; margin-bottom: 1px;" (click)="showAlert()">
+    <ion-label class="ion-text-wrap" style="text-align: center; color: #b93822;">
+      退出登录
+      </ion-label>
+  </ion-item>
+</ion-content>

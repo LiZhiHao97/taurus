@@ -1,22 +1,20 @@
-import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MePageRoutingModule } from './me-routing.module';
+import { SettingsPageRoutingModule } from './settings-routing.module';
 
-import { MePage } from './me.page';
+import { SettingsPage } from './settings.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MePageRoutingModule,
-    SharedModule
+    SettingsPageRoutingModule
   ],
-  declarations: [MePage]
+  declarations: [SettingsPage]
 })
-export class MePageModule {}
+export class SettingsPageModule {}

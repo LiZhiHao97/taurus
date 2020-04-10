@@ -10,6 +10,10 @@ export class TopicService {
     private httpService: HttpService
   ) { }
 
+  find(searchContent) {
+    return this.httpService.get(`topics?page=1&per_page=10&q=${searchContent}`);
+  }
+
   create(postData: any, token) {
     return this.httpService.post('topics', postData, token);
   }

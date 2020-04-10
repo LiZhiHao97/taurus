@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar style="padding-top: 12px;">
+    <ion-buttons slot="start">
+      <ion-back-button text="" color="light" defaultHref="/tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button (click)="search()">
+        <ion-icon name="search-outline" style="color: #fff;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-searchbar (ionChange)="change()" [(ngModel)]="searchContent" (ionFocus)="switchToSerach()" color="primary" searchIcon="none" placeholder="搜索话题、用户、标签" style="width: 94%; float: left;"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <div *ngIf="isSearch" style="padding: 10px; background: #fff;">
+      <ion-item button detail=false lines='none' *ngFor="let item of hotSearch" [ngStyle]="{'width': '50%', 'height': '50px', 'float': 'left', 'display': 'flex'}" (click)="gotoHot(item.title)">
+        <div style="width: 30px;" [ngStyle]="{'color': item.color, 'font-weight': '500', 'margin-bottom': '15px'}">
+          {{item.index}}
+        </div>
+        <div>
+          <div style="font-size: 14px;">
+            {{item.title}}
+          </div>
+          <div style="font-size: 12px; color: #9b9b9b;">
+            {{item.subTitle}}
+          </div>
+        </div>
+      </ion-item>
+    </div>
+    <div *ngIf="isShow">
+      <div *ngIf="result.length">
+        <app-topic-preview
+          *ngFor="let item of result"
+          [title]="item.title"
+          [desc]="item.description"
+          [sponsor]="item.sponsor"
+          [topicId]="item._id"
+          [tags]="item.labels"
+        >
+        </app-topic-preview>
+      </div>
+    </div>
+    <div></div>
+  </div>
+</ion-content>

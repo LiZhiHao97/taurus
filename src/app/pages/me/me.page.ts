@@ -1,7 +1,7 @@
+import { ToastService } from './../../services/toast/toast.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-me',
@@ -11,9 +11,12 @@ import { NavController } from '@ionic/angular';
 export class MePage implements OnInit {
   userInfo;
   token;
+  isShowModal = false;
+  checked = false;
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService,
   ) { }
 
   ngOnInit() {
@@ -22,16 +25,28 @@ export class MePage implements OnInit {
       this.token = res.token;
     });
   }
-
-  logoutAction() {
-    this.authService.logout();
-  }
-
+  
   gotoPage(route) {
     this.router.navigate([`/tabs/me/${route}`]);
   }
 
   gotoPersonalCenter() {
     this.router.navigate(['/personal-center/' + this.userInfo._id]);
+  }
+
+  showModal() {
+    this.isShowModal = true;
+  }
+
+  feedback() {
+    this.toastService.presentToast('感谢您的宝贵意见，我们会酌情考虑');
+    this.isShowModal = false;
+  }
+  toggleChange() {
+    if (this.checked) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.add('light');
+    }
   }
 }

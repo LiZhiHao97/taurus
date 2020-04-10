@@ -7,3 +7,13 @@ ion-toolbar {
     --color: #fff!important;
 }
 
+body.dark {
+    ion-content {
+        --background: red!important;
+    }
+    
+    ion-toolbar {
+        --background: red!important;
+        --color: red!important;
+    }
+}

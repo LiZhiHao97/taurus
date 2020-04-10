@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'tag-setting',
     loadChildren: () => import('./tag-setting/tag-setting.module').then( m => m.TagSettingPageModule)
+  },
+  {
+    path: 'settings',
+    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
   }
 ];
 

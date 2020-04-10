@@ -1,0 +1,23 @@
+.title {
+    margin-top: 10px;
+    font-size: 16px;
+    color: rgba(0, 0, 0, .8);
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; 
+    word-wrap:break-word;
+    word-break:break-all;
+}
+
+.desc {
+    color: #6a737b;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; 
+    word-wrap:break-word;
+    word-break:break-all;
+}

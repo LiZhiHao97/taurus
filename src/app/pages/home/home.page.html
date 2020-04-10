@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar style="padding-top: 10px;">
-    <ion-searchbar color="primary" animated=true placeholder="搜索话题、用户、标签" style="width: 90%; float: left;"></ion-searchbar>
+    <ion-searchbar (ionFocus)="gotoSearchPage()" color="primary" animated=true placeholder="搜索话题、用户、标签" style="width: 90%; float: left;"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
@@ -12,14 +12,14 @@
     (onChange)="onChange($event)"
     (onTabClick)="onTabClick($event)"
   >
-    <TabPane [title]="'关注'">
+    <!-- <TabPane [title]="'关注'">
       <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
         <ion-refresher-content
           pullingIcon="refresh"
           refreshingSpinner="crescent">
         </ion-refresher-content>
       </ion-refresher>
-    </TabPane>
+    </TabPane> -->
     <TabPane [title]="'推荐'">
       <app-answer-preview
         [topicTitle]="testData.topicTitle"

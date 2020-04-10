@@ -1,3 +1,4 @@
+import { TopicPreviewModule } from './../../common/topic-preview/topic-preview.module';
 import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -5,18 +6,19 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MePageRoutingModule } from './me-routing.module';
+import { SearchPageRoutingModule } from './search-routing.module';
 
-import { MePage } from './me.page';
+import { SearchPage } from './search.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MePageRoutingModule,
-    SharedModule
+    SearchPageRoutingModule,
+    SharedModule,
+    TopicPreviewModule
   ],
-  declarations: [MePage]
+  declarations: [SearchPage]
 })
-export class MePageModule {}
+export class SearchPageModule {}

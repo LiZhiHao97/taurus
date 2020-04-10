@@ -95,10 +95,10 @@
       <span class="list-text">夜间模式</span>
     </div>
     <div class="right">
-      <ion-toggle color="primary"></ion-toggle>
+      <ion-toggle color="primary" [(ngModel)]="checked" (ionChange)="toggleChange()"></ion-toggle>
     </div>
   </ion-item>
-  <ion-item button detail=false lines='none' style="margin-bottom: 1px;">
+  <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="showModal()">
     <div class="left">
       <ion-icon name="help-circle" [ngStyle]="{'color':'#acb4be','font-size': '24px','margin-top': '2px'}"></ion-icon>
     </div>
@@ -108,7 +108,7 @@
     <div class="right">
     </div>
   </ion-item>
-  <ion-item button detail=false lines='none' style="margin-bottom: 1px;">
+  <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="gotoPage('settings')">
     <div class="left">
       <ion-icon name="settings" [ngStyle]="{'color':'#acb4be','font-size': '24px','margin-top': '2px'}"></ion-icon>
     </div>
@@ -119,3 +119,11 @@
     </div>
   </ion-item>
 </ion-content>
+
+
+<Modal [(ngModel)]="this.isShowModal" [transparent]="true" [title]="'意见反馈'" [footer]="footer">
+  <div [ngStyle]="{ height: 100, overflow: 'scroll' }">
+    <TextareaItem [rows]="5" [count]="100" [placeholder]="'请输入您的意见...'"></TextareaItem>
+    <div Button [type]="'primary'" (click)="feedback()">提交</div>
+  </div>
+</Modal>
