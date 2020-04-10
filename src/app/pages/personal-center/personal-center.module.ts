@@ -1,3 +1,4 @@
+import { SharedModule } from './../../shared/shared.module';
 import { InfoEditorPage } from './info-editor/info-editor.page';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,7 +15,8 @@ import { PersonalCenterPage } from './personal-center.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    PersonalCenterPageRoutingModule
+    PersonalCenterPageRoutingModule,
+    SharedModule
   ],
   declarations: [PersonalCenterPage, InfoEditorPage],
   entryComponents: [InfoEditorPage],

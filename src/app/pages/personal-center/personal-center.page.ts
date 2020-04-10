@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth/auth.service';
 import { InfoEditorPage } from './info-editor/info-editor.page';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from './../../services/user/user.service';
@@ -11,17 +12,26 @@ import { ModalController } from '@ionic/angular';
 })
 export class PersonalCenterPage implements OnInit {
   userDatas;
+  userInfo;
+  token;
   constructor(
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      this.userService.findById(params.id).subscribe(res => {
-        this.userDatas = res;
+      this.authService.userDatas.subscribe((res: any) => {
+        this.userInfo = res.user;
+        this.token = res.token;
       });
+      // if (params.id !== this.userInfo._id ) {
+      //   this.userService.findById(params.id).subscribe(res => {
+      //     this.userDatas = res;
+      //   });
+      // }
     });
   }
 
@@ -29,7 +39,8 @@ export class PersonalCenterPage implements OnInit {
     const modal = await this.modalController.create({
       component: InfoEditorPage,
       componentProps: {
-        userDatas: this.userDatas
+        userInfo: this.userInfo,
+        token: this.token
       }
     });
     return await modal.present();

@@ -39,4 +39,9 @@ export class HttpService {
     const url = environment.apiUrl + serviceName;
     return this.http.patch(url, JSON.stringify(data), options);
   }
+
+  postFile(serviceName: string, file: any) {
+    const url = environment.apiUrl + serviceName;
+    return this.http.post(url, file);
+  }
 }

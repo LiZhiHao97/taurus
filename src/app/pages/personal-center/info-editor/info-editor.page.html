@@ -5,31 +5,28 @@
         <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-buttons slot="start">
-      <ion-back-button text="" color="light" defaultHref="/tabs/me"></ion-back-button>
-    </ion-buttons>
     <ion-title>编辑资料</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="userDatas">
+<ion-content *ngIf="userInfo">
   <div style="padding: 20px 0;">
     <div style="padding: 0 16px;">
       <ion-avatar style="border: 3px solid #f4f6f9; width: 80px; height: 80px;" (click)="presentActionSheet()">
-        <img [src]="userDatas.avatar_url">
+        <img [src]="userInfo.avatar_url">
       </ion-avatar>
     </div>
     <h3 style="padding: 0 16px;">基本资料</h3>
     <ion-item>
       <ion-label position="stacked">用户名</ion-label>
-      <ion-input type="text" [(ngModel)]="userDatas.name"></ion-input>
+      <ion-input type="text" [(ngModel)]="userInfo.name"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">一句话介绍</ion-label>
-      <ion-input type="text" [(ngModel)]="userDatas.headline"></ion-input>
+      <ion-input type="text" [(ngModel)]="userInfo.headline"></ion-input>
     </ion-item>
   </div>
-  <ion-radio-group allow-empty-selection [(ngModel)]="userDatas.gender">
+  <ion-radio-group allow-empty-selection [(ngModel)]="userInfo.gender">
     <ion-list-header>
       <ion-label style="margin-top: 0; font-size: 14px; font-weight: 400; color: #000;">性别</ion-label>
     </ion-list-header>
@@ -47,3 +44,18 @@
     <ion-button color="danger" expand="block" style="margin-top: 10px;" (click)="save()">保存</ion-button>
   </div>
 </ion-content>
+
+<Modal [(ngModel)]="isShowModal" [transparent]="true" [title]="'选择图片'" [footer]="footer">
+  <div [ngStyle]="{ height: 100, overflow: 'scroll' }">
+    <ImagePicker
+      [files]="files"
+      length=1
+      multiple=false
+      [selectable]="files.length < 1"
+      (onChange)="fileChange($event)"
+      (onImageClick)="imageClick($event)"
+    ></ImagePicker>
+    <WhiteSpace></WhiteSpace>
+    <div Button [type]="'primary'" (click)="uploadImage()">上传</div>
+  </div>
+</Modal>
