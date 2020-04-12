@@ -1,55 +1,87 @@
-<ion-header *ngIf="userInfo">
+<ion-header *ngIf="userInfo && userDatas">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button text="" color="light" defaultHref="/tabs/me"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{userInfo.name}}</ion-title>
+    <ion-title>{{userInfo._id === userDatas._id ? userInfo.name : userDatas.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="userInfo">
+<ion-content *ngIf="userInfo && userDatas">
   <div class="top">
     <ion-row>
       <ion-col size="4">
         <ion-avatar style="border: 3px solid #f4f6f9; width: 80px; height: 80px;">
-          <img [src]="userInfo.avatar_url">
+          <img [src]="userInfo._id === userDatas._id ? userInfo.avatar_url : userDatas.avatar_url">
         </ion-avatar>
       </ion-col>
       <ion-col size="8">
           <div style="font-weight: 500; color: rgba(0, 0, 0, 0.9); font-size: 20px; padding-top: 8px;">
-            {{userInfo.name}}
+            {{userInfo._id === userDatas._id ? userInfo.name : userDatas.name}}
           </div>
           <div style="font-size: 14px; padding-top: 8px; color: #999;">
-            {{userInfo.headline.length ? userInfo.headline : "这人很懒，什么也没说"}}
+            {{userInfo._id === userDatas._id ? (userInfo.headline.length ? userInfo.headline : "这人很懒，什么也没说") : (userDatas.headline.length ? userDatas.headline : "这人很懒，什么也没说")}}
           </div>
       </ion-col>
     </ion-row>
     <div style="padding-top: 14px; padding-left: 14px;">
-      <div class="info-item">
+      <div class="info-item" (click)="followingListShow()">
         <div style="font-weight: 500; font-size: 16px">
-          11
+          {{userInfo._id === userDatas._id ? userInfo.following.length : userDatas.following.length}}
         </div>
         <div style="color: #999; font-size: 13px;">
           关注
         </div>
       </div>
-      <div class="info-item">
+      <div class="info-item" (click)="followerListShow()">
         <div style="font-weight: 500; font-size: 16px">
-          20
+          {{followers.length}}
         </div>
         <div style="color: #999; font-size: 13px;">
           粉丝
         </div>
       </div>
-      <div class="info-item">
-        <div style="font-weight: 500; font-size: 16px">
-          30
-        </div>
-        <div style="color: #999; font-size: 13px;">
-          收藏
-        </div>
-      </div>
-      <ion-button color="primary" style="float: right; height: 32px;"  size="small" color="primary" (click)="infoEdit()">编辑资料</ion-button>
+      <div *ngIf="userInfo._id === userDatas._id;then me else other"></div>
     </div>
   </div>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" *ngIf="answers.length">
+    <ion-infinite-scroll-content
+      loadingSpinner="crescent"
+      >
+      <div style="text-align: left;">
+        <app-answer-preview
+          *ngFor="let item of answers"
+          [topicTitle]="item.title"
+          [answerContent]="item.content"
+          [operation]="'回答了问题'"
+          [operator]="item.answerer"
+          [voteCount]="item.voteCount"
+          [commentCount]="item.replyCount"
+          [time]="'1小时前'"
+          [answerId]="item._id"
+          [topicId]="item.topicId"
+        >
+        </app-answer-preview>
+      </div>
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
+
+<ng-template #me>
+  <ion-button color="primary" style="float: right; height: 32px;"  size="small" color="primary" (click)="infoEdit()">编辑资料</ion-button>
+</ng-template>
+
+<ng-template #other>
+  <div *ngIf="this.userInfo.following.indexOf(userDatas._id) === -1;then follow else unfollow"></div>
+</ng-template>
+
+<ng-template #follow>
+  <button style="width: 78px; height: 30px; line-height: 26px; color: #66c33a; border: 1px solid #66c33a;background: #fff;border-radius: 4px; float: right; margin-top: 4px;" (click)="followUser()">
+    + 关注
+  </button>
+</ng-template>
+<ng-template #unfollow>
+  <button style="width: 78px; height: 30px; line-height: 26px; color: #fff; border: 1px solid #66c33a;background: #66c33a;border-radius: 4px; float: right; margin-top: 4px;" (click)="unfollowUser()">
+    <ion-icon name="checkmark-outline" style="font-size: 16px; position: relative; top: 4px;"></ion-icon> 已关注
+  </button>
+</ng-template>

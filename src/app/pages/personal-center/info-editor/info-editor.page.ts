@@ -41,12 +41,18 @@ export class InfoEditorPage implements OnInit {
   }
 
   save() {
+    if (!this.userInfo.name.length) {
+      return this.toastService.presentToast('用户名不得为空');
+    }
     const postData = {
       avatar_url: this.userInfo.avatar_url,
       name: this.userInfo.name,
-      headline: this.userInfo.headline,
       gender: this.userInfo.gender
     };
+    if (this.userInfo.headline.length) {
+      postData['headline'] = this.userInfo.headline;
+    }
+    console.log(postData);
     this.userService.update(postData, this.userInfo._id, this.token).subscribe(res => {
       this.toastService.presentToast('保存成功');
       this.storageService.store(AuthConstants.AUTH, {token: this.token, user: this.userInfo});

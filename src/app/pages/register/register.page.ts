@@ -14,6 +14,7 @@ export class RegisterPage implements OnInit {
     name: '',
     password: ''
   };
+  checkPassword: string = '';
 
   constructor(
     private authService: AuthService,
@@ -23,6 +24,10 @@ export class RegisterPage implements OnInit {
   ) { }
 
   ngOnInit() {
+  }
+
+  doClose() {
+    this.router.navigate(['/login']);
   }
 
   validateInputs() {
@@ -39,10 +44,15 @@ export class RegisterPage implements OnInit {
 
   registerAction() {
     if (this.validateInputs()) {
+      if (this.postData.password !== this.checkPassword) {
+        return this.toastService.presentToast('两次密码不一致');
+      }
       this.authService.register(this.postData).subscribe((res: any) => {
         this.toastService.presentToast('注册成功');
         this.postData.name = '';
         this.postData.password = '';
+        this.checkPassword = '';
+        this.router.navigate(['login']);
       },
       (err: any) => {
         this.toastService.presentToast('服务端错误');

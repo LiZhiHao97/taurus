@@ -17,4 +17,44 @@ export class UserService {
   update(postData, id, token) {
     return this.httpService.patch(`users/${id}`, postData, token);
   }
+
+  follow(id, token) {
+    return this.httpService.put(`users/following/${id}`, token);
+  }
+
+  unfollow(id, token) {
+    return this.httpService.delete(`users/following/${id}`, token);
+  }
+
+  listFollowing(id) {
+    return this.httpService.get(`users/${id}/following`);
+  }
+
+  listFollowers(id) {
+    return this.httpService.get(`users/${id}/followers`);
+  }
+
+  followTopics(tid, token) {
+    return this.httpService.put(`users/followingTopics/${tid}`, token);
+  }
+
+  unfollowingTopics(tid, token) {
+    return this.httpService.delete(`users/followingTopics/${tid}`, token);
+  }
+
+  listFollowingTopics(id) {
+    return this.httpService.get(`users/${id}/followingTopics`);
+  }
+
+  likingAnswers(aid, token) {
+    return this.httpService.put(`users/likingAnswers/${aid}`, token);
+  }
+
+  unlikingAnswers(aid, token) {
+    return this.httpService.delete(`users/unlikingAnswers/${aid}`, token);
+  }
+
+  listLikingAnswers(id) {
+    return this.httpService.get(`users/${id}/likingAnswers`);
+  }
 }

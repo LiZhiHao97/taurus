@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" color="light" defaultHref="/tabs/me"></ion-back-button>
+    </ion-buttons>
+    <ion-title>收藏集</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="topics.length">
+    <app-topic-preview
+      *ngFor="let item of topics"
+      [title]="item.title"
+      [desc]="item.description"
+      [sponsor]="item.sponsor"
+      [topicId]="item._id"
+      [tags]="item.labels"
+    >
+    </app-topic-preview>
+  </div>
+</ion-content>

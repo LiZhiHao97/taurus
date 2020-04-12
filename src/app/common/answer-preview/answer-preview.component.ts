@@ -30,4 +30,8 @@ export class AnswerPreviewComponent implements OnInit {
   gotoTopicDetailPage() {
     this.router.navigate([`/topic-detail/${this.topicId}`]);
   }
+
+  gotoPersonalCenter(id) {
+    this.router.navigate([`/personal-center/${id}`]);
+  }
 }

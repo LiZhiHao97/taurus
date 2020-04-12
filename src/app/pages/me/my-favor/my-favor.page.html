@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" color="light" defaultHref="/tabs/me"></ion-back-button>
+    </ion-buttons>
+    <ion-title>我赞过的答案</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="answers">
+    <app-answer-preview
+      *ngFor="let item of answers"
+      [topicTitle]="item.topicId.title"
+      [answerContent]="item.content"
+      [operation]="'回答了问题'"
+      [operator]="item.answerer"
+      [voteCount]="item.voteCount"
+      [commentCount]="item.replyCount"
+      [time]="'1小时前'"
+      [answerId]="item._id"
+      [topicId]="item.topicId._id"
+    >
+  </app-answer-preview>
+  </div>
+</ion-content>

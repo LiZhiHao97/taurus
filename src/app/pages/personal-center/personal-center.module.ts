@@ -1,3 +1,7 @@
+import { UserPreviewModule } from './../../common/user-preview/user-preview.module';
+import { FollowingListPage } from './following-list/following-list.page';
+import { FollowerListPage } from './follower-list/follower-list.page';
+import { AnswerPreviewModule } from './../../common/answer-preview/answer-preview.module';
 import { SharedModule } from './../../shared/shared.module';
 import { InfoEditorPage } from './info-editor/info-editor.page';
 import { NgModule } from '@angular/core';
@@ -16,9 +20,20 @@ import { PersonalCenterPage } from './personal-center.page';
     FormsModule,
     IonicModule,
     PersonalCenterPageRoutingModule,
-    SharedModule
+    SharedModule,
+    AnswerPreviewModule,
+    UserPreviewModule
   ],
-  declarations: [PersonalCenterPage, InfoEditorPage],
-  entryComponents: [InfoEditorPage],
+  declarations: [
+    PersonalCenterPage,
+    InfoEditorPage,
+    FollowerListPage,
+    FollowingListPage
+  ],
+  entryComponents: [
+    InfoEditorPage,
+    FollowerListPage,
+    FollowingListPage
+  ],
 })
 export class PersonalCenterPageModule {}

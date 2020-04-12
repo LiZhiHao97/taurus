@@ -1,24 +1,42 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>登录</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form>
-    <ion-list>
-      <ion-item>
-        <ion-label position="stacked">Username</ion-label>
-        <ion-input autocomplete="off" name="username" type="text" [(ngModel)]="postData.name"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="stacked">Password</ion-label>
-        <ion-input autocomplete="off" name="password" type="password" [(ngModel)]="postData.password"></ion-input>
-      </ion-item>
-      <ion-item>
-        <a routerLink="/register">Create Account</a>
-      </ion-item>
-    </ion-list>
-    <ion-button expand="block" share="round" color="success" (click)="loginAction()">Login</ion-button>
-  </form>
+  <InputItem
+    [clear]="true"
+    [placeholder]="'用户名'"
+    [moneyKeyboardAlign]="'left'"
+    [content]="usernameIcon"
+    [(ngModel)]="postData.name"
+    style="margin-top: 20px;"
+  >
+  </InputItem>
+  <InputItem
+    [clear]="true"
+    [placeholder]="'密码'"
+    [moneyKeyboardAlign]="'left'"
+    [content]="passwordIcon"
+    [(ngModel)]="postData.password"
+    style="margin-top: 20px;"
+  >
+  </InputItem>
+  <ion-button expand="block" (click)="loginAction()" style="margin-top: 40px;">登录</ion-button>
+
+  <ion-item lines="none">
+    <div style="text-align: center; width: 100%;">
+      <a routerLink="/register" style="color: #999; font-size: 14px;">
+        没有账号？现在注册
+      </a>
+    </div>
+  </ion-item>
 </ion-content>
+
+<ng-template #usernameIcon>
+  <ion-icon name="person-outline" style="font-size: 20px; color:#999;"></ion-icon>
+</ng-template>
+<ng-template #passwordIcon>
+  <ion-icon name="lock-closed-outline" style="font-size: 20px; color:#999"></ion-icon>
+</ng-template>

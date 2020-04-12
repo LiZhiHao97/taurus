@@ -1,3 +1,4 @@
+import { TopicPreviewModule } from './../../common/topic-preview/topic-preview.module';
 import { AnswerPreviewModule } from '../../common/answer-preview/answer-preview.module';
 import { AddTagsPage } from './topic-creator/add-tags/add-tags.page';
 import { TopicCreatorPage } from './topic-creator/topic-creator.page';
@@ -19,7 +20,8 @@ import { HomePage } from './home.page';
     IonicModule,
     HomePageRoutingModule,
     SharedModule,
-    AnswerPreviewModule
+    AnswerPreviewModule,
+    TopicPreviewModule
   ],
   declarations: [
     HomePage,

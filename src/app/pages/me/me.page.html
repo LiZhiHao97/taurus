@@ -31,93 +31,95 @@
 
   
 
-  <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="gotoPage()">
-    <div class="left">
-      <ion-icon name="bulb" [ngStyle]="{'color': '#2c77f6','font-size': '24px','margin-top': '2px'}"></ion-icon>
-    </div>
-    <div class="medium">
-      <span class="list-text">我的创作</span>
-    </div>
-    <div class="right">
-      <span class="list-count">0个</span>
-    </div>
-  </ion-item>
-  <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="gotoPage()">
-    <div class="left">
-      <ion-icon name="heart" [ngStyle]="{'color': '#e35c4c','font-size': '24px','margin-top': '2px'}"></ion-icon>
-    </div>
-    <div class="medium">
-      <span class="list-text">我赞过的</span>
-    </div>
-    <div class="right">
-      <span class="list-count">35个</span>
-    </div>
-  </ion-item>
-  <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="gotoPage()">
-    <div class="left">
-      <ion-icon name="star" [ngStyle]="{'color': '#f7c55f','font-size': '24px','margin-top': '2px'}"></ion-icon>
-    </div>
-    <div class="medium">
-      <span class="list-text">收藏集</span>
-    </div>
-    <div class="right">
-      <span class="list-count">41个</span>
-    </div>
-  </ion-item>
-  <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="gotoPage()">
-    <div class="left">
-      <ion-icon name="eye" [ngStyle]="{'color': '#acb4be','font-size': '24px','margin-top': '2px'}"></ion-icon>
-    </div>
-    <div class="medium">
-      <span class="list-text">浏览记录</span>
-    </div>
-    <div class="right">
-      <span class="list-count">0个</span>
-    </div>
-  </ion-item>
-  <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="gotoPage('tag-setting')">
-    <div class="left">
-      <ion-icon name="pricetags" [ngStyle]="{'color': '#acb4be','font-size': '24px','margin-top': '2px'}"></ion-icon>
-    </div>
-    <div class="medium">
-      <span class="list-text">标签管理</span>
-    </div>
-    <div class="right">
-      <span class="list-count" *ngIf="userInfo">{{userInfo.tags.length}}个</span>
-    </div>
-  </ion-item>
-
-  <ion-item button detail=false lines='none' style="margin-top:16px;margin-bottom: 1px;">
-    <div class="left">
-      <ion-icon name="moon" [ngStyle]="{'color':'#acb4be','font-size': '24px','margin-top': '2px'}"></ion-icon>
-    </div>
-    <div class="medium">
-      <span class="list-text">夜间模式</span>
-    </div>
-    <div class="right">
-      <ion-toggle color="primary" [(ngModel)]="checked" (ionChange)="toggleChange()"></ion-toggle>
-    </div>
-  </ion-item>
-  <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="showModal()">
-    <div class="left">
-      <ion-icon name="help-circle" [ngStyle]="{'color':'#acb4be','font-size': '24px','margin-top': '2px'}"></ion-icon>
-    </div>
-    <div class="medium">
-      <span class="list-text">意见反馈</span>
-    </div>
-    <div class="right">
-    </div>
-  </ion-item>
-  <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="gotoPage('settings')">
-    <div class="left">
-      <ion-icon name="settings" [ngStyle]="{'color':'#acb4be','font-size': '24px','margin-top': '2px'}"></ion-icon>
-    </div>
-    <div class="medium">
-      <span class="list-text">设置</span>
-    </div>
-    <div class="right">
-    </div>
-  </ion-item>
+  <div *ngIf="userInfo">
+    <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="gotoPage('participation')">
+      <div class="left">
+        <ion-icon name="bulb" [ngStyle]="{'color': '#2c77f6','font-size': '24px','margin-top': '2px'}"></ion-icon>
+      </div>
+      <div class="medium">
+        <span class="list-text">我的创作</span>
+      </div>
+      <div class="right">
+        <span class="list-count">{{userInfo.createTopics.length}}个</span>
+      </div>
+    </ion-item>
+    <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="gotoPage('my-favor')">
+      <div class="left">
+        <ion-icon name="heart" [ngStyle]="{'color': '#e35c4c','font-size': '24px','margin-top': '2px'}"></ion-icon>
+      </div>
+      <div class="medium">
+        <span class="list-text">我赞过的</span>
+      </div>
+      <div class="right">
+        <span class="list-count">{{userInfo.likingAnswers.length}}个</span>
+      </div>
+    </ion-item>
+    <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="gotoPage('collection')">
+      <div class="left">
+        <ion-icon name="star" [ngStyle]="{'color': '#f7c55f','font-size': '24px','margin-top': '2px'}"></ion-icon>
+      </div>
+      <div class="medium">
+        <span class="list-text">收藏集</span>
+      </div>
+      <div class="right">
+        <span class="list-count">{{userInfo.followingTopics.length}}个</span>
+      </div>
+    </ion-item>
+    <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="gotoPage('track')">
+      <div class="left">
+        <ion-icon name="eye" [ngStyle]="{'color': '#acb4be','font-size': '24px','margin-top': '2px'}"></ion-icon>
+      </div>
+      <div class="medium">
+        <span class="list-text">浏览记录</span>
+      </div>
+      <div class="right" *ngIf="tracks">
+        <span class="list-count">{{tracks.length}}个</span>
+      </div>
+    </ion-item>
+    <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="gotoPage('tag-setting')">
+      <div class="left">
+        <ion-icon name="pricetags" [ngStyle]="{'color': '#acb4be','font-size': '24px','margin-top': '2px'}"></ion-icon>
+      </div>
+      <div class="medium">
+        <span class="list-text">标签管理</span>
+      </div>
+      <div class="right">
+        <span class="list-count" *ngIf="userInfo">{{userInfo.tags.length}}个</span>
+      </div>
+    </ion-item>
+  
+    <ion-item button detail=false lines='none' style="margin-top:16px;margin-bottom: 1px;">
+      <div class="left">
+        <ion-icon name="moon" [ngStyle]="{'color':'#acb4be','font-size': '24px','margin-top': '2px'}"></ion-icon>
+      </div>
+      <div class="medium">
+        <span class="list-text">夜间模式</span>
+      </div>
+      <div class="right">
+        <ion-toggle color="primary" [(ngModel)]="checked" (ionChange)="toggleChange()"></ion-toggle>
+      </div>
+    </ion-item>
+    <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="showModal()">
+      <div class="left">
+        <ion-icon name="help-circle" [ngStyle]="{'color':'#acb4be','font-size': '24px','margin-top': '2px'}"></ion-icon>
+      </div>
+      <div class="medium">
+        <span class="list-text">意见反馈</span>
+      </div>
+      <div class="right">
+      </div>
+    </ion-item>
+    <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="gotoPage('settings')">
+      <div class="left">
+        <ion-icon name="settings" [ngStyle]="{'color':'#acb4be','font-size': '24px','margin-top': '2px'}"></ion-icon>
+      </div>
+      <div class="medium">
+        <span class="list-text">设置</span>
+      </div>
+      <div class="right">
+      </div>
+    </ion-item>
+  </div>
 </ion-content>
 
 

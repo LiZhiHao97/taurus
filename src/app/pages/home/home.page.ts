@@ -1,3 +1,4 @@
+import { TopicService } from './../../services/topic/topic.service';
 import { Router } from '@angular/router';
 import { TopicCreatorPage } from './topic-creator/topic-creator.page';
 import { ModalController } from '@ionic/angular';
@@ -23,10 +24,12 @@ export class HomePage implements OnInit {
     answerId: '5e7868613687b1dcb31cb654',
     topicId: '5e76151b687e4a83e1d3009e'
   }
+  hotRank: any = [];
   index = 0;
   constructor(
     private modalController: ModalController,
-    private router: Router
+    private router: Router,
+    private topicService: TopicService
   ) { }
 
   ngOnInit() {
@@ -38,7 +41,11 @@ export class HomePage implements OnInit {
   }
 
   onTabClick(item) {
-    console.log('onTabClick', item);
+    if (item.index === 1) {
+      this.topicService.findHot().subscribe(res => {
+        this.hotRank = res;
+      });
+    }
   }
 
   async createTopic() {

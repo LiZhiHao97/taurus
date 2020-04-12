@@ -7,6 +7,14 @@ const routes: Routes = [
   {
     path: '',
     component: PersonalCenterPage
+  },
+  {
+    path: 'following-list',
+    loadChildren: () => import('./following-list/following-list.module').then( m => m.FollowingListPageModule)
+  },
+  {
+    path: 'follower-list',
+    loadChildren: () => import('./follower-list/follower-list.module').then( m => m.FollowerListPageModule)
   }
 ];
 

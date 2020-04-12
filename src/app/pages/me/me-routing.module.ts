@@ -15,6 +15,22 @@ const routes: Routes = [
   {
     path: 'settings',
     loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
+  },
+  {
+    path: 'participation',
+    loadChildren: () => import('./participation/participation.module').then( m => m.ParticipationPageModule)
+  },
+  {
+    path: 'collection',
+    loadChildren: () => import('./collection/collection.module').then( m => m.CollectionPageModule)
+  },
+  {
+    path: 'my-favor',
+    loadChildren: () => import('./my-favor/my-favor.module').then( m => m.MyFavorPageModule)
+  },
+  {
+    path: 'track',
+    loadChildren: () => import('./track/track.module').then( m => m.TrackPageModule)
   }
 ];
 

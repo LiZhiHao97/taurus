@@ -10,7 +10,7 @@ import { TopicCreatorPage } from './topic-creator.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    TopicCreatorPageRoutingModule,
+    TopicCreatorPageRoutingModule
   ],
   declarations: [
     TopicCreatorPage

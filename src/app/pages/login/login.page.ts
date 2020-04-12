@@ -44,7 +44,7 @@ export class LoginPage implements OnInit {
       this.authService.login(this.postData).subscribe((res: any) => {
         if (res.userData) {
           this.storageService.store(AuthConstants.AUTH, res.userData);
-          this.router.navigate(['tabs']);
+          this.router.navigate(['/tabs/home']);
         }
         this.toastService.presentToast('登录成功');
       },

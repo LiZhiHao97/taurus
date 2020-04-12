@@ -20,7 +20,7 @@
             <span style="color: #000;">
               {{subComment.commentator.name}}
               <span *ngIf="subComment.replyTo._id !== data.commentator._id" style="color: #999">回复</span>
-              <span *ngIf="subComment.replyTo._id !== data.commentator._id">{{subComment.replyTo.name}}</span>
+              <span *ngIf="subComment.replyTo._id !== data.commentator._id" style="padding-left: 4px;">{{subComment.replyTo.name}}</span>
               :
             </span>
             {{subComment.content}}

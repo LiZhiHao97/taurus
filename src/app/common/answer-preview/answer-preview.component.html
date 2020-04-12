@@ -1,6 +1,6 @@
 <ion-card style="margin: 12px 0; padding: 10px; border-radius: 0; box-shadow: none;"> 
   <div class="userInfoWrapper">
-    <ion-avatar>
+    <ion-avatar (click)="gotoPersonalCenter(operator._id)">
       <img [src]="operator.avatar_url" style="width: 40px; height: 40px;">
     </ion-avatar>
     <div style="flex: 1; padding-top: 2px;" (click)="gotoAnswerDetailPage()">

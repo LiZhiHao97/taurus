@@ -11,6 +11,8 @@ import { Observable, BehaviorSubject } from 'rxjs';
 export class AuthService {
 
   userDatas = new BehaviorSubject<any>('');
+  tracks = new BehaviorSubject<any>('');
+
   constructor(
     private httpService: HttpService,
     private storageService: StorageService,
@@ -20,6 +22,12 @@ export class AuthService {
   getUserData() {
     this.storageService.get(AuthConstants.AUTH).then(res => {
       this.userDatas.next(res);
+    });
+  }
+
+  getTracks() {
+    this.storageService.get(AuthConstants.TRACK).then(res => {
+      this.tracks.next(res);
     });
   }
 

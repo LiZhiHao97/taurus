@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="light" (click)="doClose()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>关注列表</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="following">
+    <app-user-preview
+      *ngFor="let item of following"
+      [userInfo]="userInfo"
+      [token]="token"
+      [data]="item"
+    >
+    </app-user-preview>
+  </div>
+</ion-content>

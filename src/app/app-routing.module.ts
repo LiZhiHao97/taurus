@@ -1,3 +1,4 @@
+import { UserTrackResolver } from './resolvers/userTrack.resolver';
 import { UserDataResolver } from './resolvers/userData.resolver';
 import { HomeGuard } from './guards/home.guard';
 import { NgModule } from '@angular/core';
@@ -8,7 +9,8 @@ const routes: Routes = [
     path: '',
     canActivate: [HomeGuard],
     resolve: {
-      userData: UserDataResolver
+      userData: UserDataResolver,
+      tracks: UserTrackResolver
     },
     loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule)
   },
@@ -24,7 +26,8 @@ const routes: Routes = [
     path: 'personal-center/:id',
     canActivate: [HomeGuard],
     resolve: {
-      userData: UserDataResolver
+      userData: UserDataResolver,
+      tracks: UserTrackResolver
     },
     loadChildren: () => import('./pages/personal-center/personal-center.module').then( m => m.PersonalCenterPageModule)
   },
@@ -32,7 +35,8 @@ const routes: Routes = [
     path: 'topic/:tid/answer-detail/:aid',
     canActivate: [HomeGuard],
     resolve: {
-      userData: UserDataResolver
+      userData: UserDataResolver,
+      tracks: UserTrackResolver
     },
     loadChildren: () => import('./pages/answer-detail/answer-detail.module').then( m => m.AnswerDetailPageModule)
   },
@@ -40,7 +44,8 @@ const routes: Routes = [
     path: 'topic-detail/:id',
     canActivate: [HomeGuard],
     resolve: {
-      userData: UserDataResolver
+      userData: UserDataResolver,
+      tracks: UserTrackResolver
     },
     loadChildren: () => import('./pages/topic-detail/topic-detail.module').then( m => m.TopicDetailPageModule)
   },

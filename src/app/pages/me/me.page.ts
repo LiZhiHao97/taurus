@@ -13,6 +13,7 @@ export class MePage implements OnInit {
   token;
   isShowModal = false;
   checked = false;
+  tracks;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -24,10 +25,14 @@ export class MePage implements OnInit {
       this.userInfo = res.user;
       this.token = res.token;
     });
+
+    this.authService.tracks.subscribe((res: any) => {
+      this.tracks = res.tracks;
+    });
   }
-  
+
   gotoPage(route) {
-    this.router.navigate([`/tabs/me/${route}`]);
+    this.router.navigate([`/tabs/me/${route}`, {id: this.userInfo._id}]);
   }
 
   gotoPersonalCenter() {

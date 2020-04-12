@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="light" (click)="doClose()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>粉丝列表</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-user-preview
+    *ngFor="let item of followers"
+    [userInfo]="userInfo"
+    [token]="token"
+    [data]="item"
+  >
+  </app-user-preview>
+</ion-content>

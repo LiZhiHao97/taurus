@@ -14,6 +14,10 @@ export class AnswerService {
     return this.httpService.get(`topics/${id}/answers?page=${page}&per_page=10`);
   }
 
+  findByUser(id, page) {
+    return this.httpService.get(`topics/a/answers/b/users/${id}?page=${page}&per_page=10`);
+  }
+
   findById(tid, aid) {
     return this.httpService.get(`topics/${tid}/answers/${aid}`);
   }

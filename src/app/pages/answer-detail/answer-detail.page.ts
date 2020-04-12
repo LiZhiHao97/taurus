@@ -1,8 +1,11 @@
+import { AuthConstants } from './../../config/auth-constants';
+import { StorageService } from './../../services/storage/storage.service';
+import { UserService } from './../../services/user/user.service';
 import { ToastService } from './../../services/toast/toast.service';
 import { CommentService } from './../../services/comment/comment.service';
 import { AuthService } from './../../services/auth/auth.service';
 import { AnswerService } from './../../services/answer/answer.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,7 +15,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnswerDetailPage implements OnInit {
   data;
-  userDatas;
+  userInfo;
+  token;
   comments;
   commentContent: string = '';
   isOpenEmojiPicker = false;
@@ -22,7 +26,10 @@ export class AnswerDetailPage implements OnInit {
     private answerService: AnswerService,
     private authService: AuthService,
     private commentService: CommentService,
-    private toatsService: ToastService
+    private toastService: ToastService,
+    private userService: UserService,
+    private storageService: StorageService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -37,7 +44,8 @@ export class AnswerDetailPage implements OnInit {
     });
 
     this.authService.userDatas.subscribe((res: any) => {
-      this.userDatas = res;
+      this.userInfo = res.user;
+      this.token = res.token;
     });
   }
 
@@ -51,15 +59,74 @@ export class AnswerDetailPage implements OnInit {
 
   comment() {
     if (!this.commentContent.length) {
-      return this.toatsService.presentToast('评论内容不得为空');
+      return this.toastService.presentToast('评论内容不得为空');
     }
     this.commentService.comment(
       {content: this.commentContent},
       this.data.topicId._id, this.data._id,
-      this.userDatas.token
+      this.token
       ).subscribe(res => {
-      this.toatsService.presentToast('评论成功');
+      this.toastService.presentToast('评论成功');
       this.comments = [...this.comments, res];
     });
+  }
+
+  followUser() {
+    this.userService.follow(this.data.answerer._id, this.token).subscribe(res => {
+      const newUserInfo = JSON.parse(JSON.stringify(this.userInfo));
+      newUserInfo.following.push(this.data.answerer._id);
+
+      this.storageService.store(AuthConstants.AUTH, {token: this.token, user: newUserInfo});
+      this.authService.getUserData();
+      this.toastService.presentToast('关注成功');
+    });
+  }
+
+  unfollowUser() {
+    this.userService.unfollow(this.data.answerer._id, this.token).subscribe(res => {
+      const newUserInfo = JSON.parse(JSON.stringify(this.userInfo));
+      const index = newUserInfo.following.indexOf(this.data.answerer._id);
+      newUserInfo.following.splice(index, 1);
+
+      this.storageService.store(AuthConstants.AUTH, {token: this.token, user: newUserInfo});
+      this.authService.getUserData();
+      this.toastService.presentToast('取消关注成功');
+    });
+  }
+
+  likingAnswers() {
+    this.userService.likingAnswers(this.data._id, this.token).subscribe(res => {
+      const newUserInfo = JSON.parse(JSON.stringify(this.userInfo));
+      newUserInfo.likingAnswers.push(this.data._id);
+
+      this.storageService.store(AuthConstants.AUTH, {token: this.token, user: newUserInfo});
+      this.authService.getUserData();
+      this.toastService.presentToast('点赞成功');
+
+
+      const newData = JSON.parse(JSON.stringify(this.data));
+      newData.voteCount ++;
+      this.data = newData;
+    });
+  }
+
+  unlikingAnswers() {
+    this.userService.unlikingAnswers(this.data._id, this.token).subscribe(res => {
+      const newUserInfo = JSON.parse(JSON.stringify(this.userInfo));
+      const index = newUserInfo.likingAnswers.indexOf(this.data._id);
+      newUserInfo.likingAnswers.splice(index, 1);
+
+      this.storageService.store(AuthConstants.AUTH, {token: this.token, user: newUserInfo});
+      this.authService.getUserData();
+      this.toastService.presentToast('取消点赞');
+
+      const newData = JSON.parse(JSON.stringify(this.data));
+      newData.voteCount --;
+      this.data = newData;
+    });
+  }
+
+  gotoPersonalCenter(id) {
+    this.router.navigate([`/personal-center/${id}`]);
   }
 }
