@@ -21,7 +21,7 @@
         </ion-avatar>
         <div style="padding-left: 10px; padding-top: 2px; flex: 1;">
           <div style="color: rgba(0, 0, 0, .9)">{{topicData.sponsor.name}}</div>
-          <div style="color: #b9c1cb; font-size: 13px; padding-top: 1px;">{{topicData.sponsor.headline}}·1小时前</div>
+          <div style="color: #b9c1cb; font-size: 13px; padding-top: 1px;">{{topicData.sponsor.headline}}·{{getDateDiff(topicData.craetedAt)}}</div>
         </div>
         <div style="padding-top: 9px;" *ngIf="userInfo">
           <div *ngIf="this.userInfo.followingTopics.indexOf(topicData._id) === -1;then follow else unfollow"></div>

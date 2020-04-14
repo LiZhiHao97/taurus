@@ -10,6 +10,10 @@ export class TopicService {
     private httpService: HttpService
   ) { }
 
+  recommend(page) {
+    return this.httpService.get(`topics?page=${page}&per_page=10`);
+  }
+
   findHot() {
     return this.httpService.get(`topics?page=1&per_page=10`);
   }

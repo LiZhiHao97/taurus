@@ -1,3 +1,4 @@
+import { Util } from './../../util';
 import { AuthConstants } from './../../config/auth-constants';
 import { StorageService } from './../../services/storage/storage.service';
 import { ToastService } from './../../services/toast/toast.service';
@@ -21,6 +22,7 @@ export class TopicDetailPage implements OnInit {
   userInfo;
   token;
   tracks;
+  getDateDiff = Util.getDateDiff;
   constructor(
     private topicService: TopicService,
     private answerService: AnswerService,

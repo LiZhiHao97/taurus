@@ -1,3 +1,4 @@
+import { Util } from './../../util';
 import { CommentService } from './../../services/comment/comment.service';
 import { ToastService } from './../../services/toast/toast.service';
 import { Component, OnInit, Input } from '@angular/core';
@@ -16,6 +17,7 @@ export class CommentItemComponent implements OnInit {
   isOpenEmojiPicker = false;
   subComments: any = [];
   curId: string = '';
+  getDateDiff = Util.getDateDiff;
 
   constructor(
     private toastService: ToastService,

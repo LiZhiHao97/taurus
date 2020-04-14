@@ -1,3 +1,4 @@
+import { Util } from './../../util';
 import { Router } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -16,6 +17,7 @@ export class AnswerPreviewComponent implements OnInit {
   @Input() time: string;
   @Input() answerId: string;
   @Input() topicId: string;
+  getDateDiff = Util.getDateDiff;
 
   constructor(private router: Router) { }
 

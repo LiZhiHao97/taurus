@@ -11,7 +11,7 @@
             <ion-icon name="chatbubble-outline" style="color: #999;position: relative; top: 1px;" (click)="showModal()"></ion-icon>
           </div>
         </div>
-        <div style="color: #b9c1cb; font-size: 13px; padding-top: 4px;">{{data.commentator.headline}}·1小时前</div>
+        <div style="color: #b9c1cb; font-size: 13px; padding-top: 4px;">{{data.commentator.headline}}·{{getDateDiff(data.createdAt)}}</div>
         <div class="content" style="padding-top: 10px;color: #1a1a1c;">
           {{data.content}}
         </div>

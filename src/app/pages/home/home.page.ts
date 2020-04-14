@@ -2,7 +2,8 @@ import { TopicService } from './../../services/topic/topic.service';
 import { Router } from '@angular/router';
 import { TopicCreatorPage } from './topic-creator/topic-creator.page';
 import { ModalController } from '@ionic/angular';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonInfiniteScroll } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -10,22 +11,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  testData = {
-    topicTitle: '孙丰是狗吗？',
-    answerContent: '泻药，人在美国，刚下飞机，经过大量数据检测，孙丰的DNA序列与狗有99%的相似度，所以我们可以立即推，孙丰就是一条狗，这是科学严谨证明的结果了。如果大家有什么想法的话，欢迎给我留言。',
-    operation: '回答了问题',
-    operator: {
-      name: '该用户已成仙',
-      avatar_url: 'http://localhost:8000/uploads/upload_d99061819d914cc478379980a4af9876.jpg'
-    },
-    voteCount: 998,
-    commentCount: 1024,
-    time: '1小时前',
-    answerId: '5e7868613687b1dcb31cb654',
-    topicId: '5e76151b687e4a83e1d3009e'
-  }
+  @ViewChild(IonInfiniteScroll, {static: false}) infiniteScroll: IonInfiniteScroll;
+  recommend: any = [];
   hotRank: any = [];
   index = 0;
+  page = 1;
   constructor(
     private modalController: ModalController,
     private router: Router,
@@ -33,7 +23,9 @@ export class HomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.topicService.recommend(this.page).subscribe(res => {
+      this.recommend = res;
+    });
   }
 
   onChange(item) {
@@ -55,17 +47,32 @@ export class HomePage implements OnInit {
     return await modal.present();
   }
 
-  doRefresh(event) {
-    console.log('Begin async operation');
-
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      event.target.complete();
-    }, 2000);
-  }
-
   gotoSearchPage() {
     this.router.navigate(['/search']);
+  }
+
+  loadData(event) {
+    setTimeout(() => {
+      this.topicService.recommend(this.page + 1).subscribe(res => {
+        let newRecommend = JSON.parse(JSON.stringify(this.recommend));
+        const extraRecommend = JSON.parse(JSON.stringify(res));
+        newRecommend = [...newRecommend, ...extraRecommend];
+        this.recommend = newRecommend;
+        console.log(this.recommend);
+      })
+      this.page = this.page + 1;
+      event.target.complete();
+
+      // App logic to determine if all data is loaded
+      // and disable the infinite scroll
+      if (this.recommend.length === 1000) {
+        event.target.disabled = true;
+      }
+    }, 500);
+  }
+
+  toggleInfiniteScroll() {
+    this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
   }
 
 }

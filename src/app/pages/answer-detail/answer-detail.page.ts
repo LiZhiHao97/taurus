@@ -1,3 +1,4 @@
+import { Util } from './../../util';
 import { AuthConstants } from './../../config/auth-constants';
 import { StorageService } from './../../services/storage/storage.service';
 import { UserService } from './../../services/user/user.service';
@@ -20,6 +21,7 @@ export class AnswerDetailPage implements OnInit {
   comments;
   commentContent: string = '';
   isOpenEmojiPicker = false;
+  getDateDiff = Util.getDateDiff;
 
   constructor(
     private activatedRoute: ActivatedRoute,

@@ -21,7 +21,7 @@
         </ion-avatar>
         <div style="padding-left: 10px; padding-top: 2px; flex: 1;">
           <div style="color: rgba(0, 0, 0, .9)">{{data.answerer.name}}</div>
-          <div style="color: #b9c1cb; font-size: 13px; padding-top: 1px;">{{data.answerer.headline}}·1小时前</div>
+          <div style="color: #b9c1cb; font-size: 13px; padding-top: 1px;">{{data.answerer.headline}}·{{getDateDiff(data.createdAt)}}</div>
         </div>
         <div style="padding-top: 9px;" (click)="follow()">
           <div *ngIf="userInfo._id !== data.answerer._id">

@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" color="light" defaultHref="/tabs/message"></ion-back-button>
+    </ion-buttons>
+    <ion-title>讨论组</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <div *ngIf="userInfo">
+
+  </div>
+</ion-content>
+
+
+<ion-footer class="ion-no-border footer" [style.height]="isOpenEmojiPicker ? '260px' : '60px'">
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="10">
+          <InputItem [placeholder]="'我有想法'" [content]="emoji" [(ngModel)]="chatContent">
+          </InputItem>
+        </ion-col>
+        <ion-col size="2">
+          <button style="background-color: #fff;position: relative; top: 10px;" (click)="chat()">
+            <ion-icon name="paper-plane-outline" style="font-size: 24px; color: #999"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <app-emojipicker *ngIf="isOpenEmojiPicker" (changed)="onChanged($event)"></app-emojipicker>
+  </ion-toolbar>
+</ion-footer>
+
+<ng-template #emoji>
+  <button style="background-color: #fff;" (click)="switchEmojiPicker()">
+    <ion-icon name="happy-outline" style="font-size: 24px; color: #999"></ion-icon>
+  </button>
+</ng-template>
