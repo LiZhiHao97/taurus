@@ -1,3 +1,4 @@
+import { MessageService } from './../../services/message/message.service';
 import { Util } from './../../util';
 import { CommentService } from './../../services/comment/comment.service';
 import { ToastService } from './../../services/toast/toast.service';
@@ -11,6 +12,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CommentItemComponent implements OnInit {
   @Input() data;
   @Input() token;
+  @Input() userInfo;
   isShowModal = false;
   isShowModal2 = false;
   replyContent: string = '';
@@ -21,10 +23,12 @@ export class CommentItemComponent implements OnInit {
 
   constructor(
     private toastService: ToastService,
-    private commentService: CommentService
+    private commentService: CommentService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
+    console.log(this.data);
     this.commentService.getSubComments(this.data.topicId, this.data.answerId, this.data._id).subscribe(res => {
       this.subComments = res;
       console.log(this.subComments);
@@ -61,6 +65,16 @@ export class CommentItemComponent implements OnInit {
       this.isShowModal = false;
       this.replyContent = '';
       this.subComments = [...this.subComments, res];
+
+      this.messageService.create({
+        content: '回复了你的评论',
+        sender: this.userInfo._id,
+        receiver: this.data.commentator._id,
+        topicId: this.data.topicId,
+        answerId: this.data.answerId
+      }, this.token).subscribe(res => {
+        console.log(res);
+      });
     })
   }
 
@@ -74,6 +88,16 @@ export class CommentItemComponent implements OnInit {
       this.isShowModal2 = false;
       this.replyContent = '';
       this.subComments = [...this.subComments, res];
+
+      this.messageService.create({
+        content: '回复了你的评论',
+        sender: this.userInfo._id,
+        receiver: this.curId,
+        topicId: this.data.topicId,
+        answerId: this.data.answerId
+      }, this.token).subscribe(res => {
+        console.log(res);
+      });
     })
   }
 }

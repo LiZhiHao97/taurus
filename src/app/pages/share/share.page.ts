@@ -6,7 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./share.page.scss'],
 })
 export class SharePage implements OnInit {
-
+  masonryItems = [
+    { title: 'item 1' },
+    { title: 'item 2' },
+    { title: 'item 3' },
+  ];
   constructor() { }
 
   ngOnInit() {

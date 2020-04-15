@@ -21,7 +21,7 @@
         </ion-avatar>
         <div style="padding-left: 10px; padding-top: 2px; flex: 1;">
           <div style="color: rgba(0, 0, 0, .9)">{{topicData.sponsor.name}}</div>
-          <div style="color: #b9c1cb; font-size: 13px; padding-top: 1px;">{{topicData.sponsor.headline}}·{{getDateDiff(topicData.craetedAt)}}</div>
+          <div style="color: #b9c1cb; font-size: 13px; padding-top: 1px;">{{topicData.sponsor.headline}}·{{getDateDiff(topicData.createdAt)}}</div>
         </div>
         <div style="padding-top: 9px;" *ngIf="userInfo">
           <div *ngIf="this.userInfo.followingTopics.indexOf(topicData._id) === -1;then follow else unfollow"></div>
@@ -31,6 +31,9 @@
         </div> -->
       </div>
       <div style="padding-top: 10px;color: #1a1a1c;" [innerHTML]="topicData.description">
+      </div>
+      <div class="tag-container" style="margin-top: 10px;">
+        <Tag [selected]="true" *ngFor="let item of topicData.labels">{{item.name}}</Tag>
       </div>
     </div>
     <ion-row style="border-top: 1px solid #f3f5f8; padding: 10px; color: #99a4b0;">

@@ -1,3 +1,4 @@
+import { SuperTabsModule } from '@ionic-super-tabs/angular';
 import { TopicPreviewModule } from './../../common/topic-preview/topic-preview.module';
 import { AnswerPreviewModule } from '../../common/answer-preview/answer-preview.module';
 import { AddTagsPage } from './topic-creator/add-tags/add-tags.page';
@@ -21,7 +22,8 @@ import { HomePage } from './home.page';
     HomePageRoutingModule,
     SharedModule,
     AnswerPreviewModule,
-    TopicPreviewModule
+    TopicPreviewModule,
+    SuperTabsModule,
   ],
   declarations: [
     HomePage,

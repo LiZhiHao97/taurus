@@ -98,15 +98,17 @@ export class PersonalCenterPage implements OnInit {
         newAnswers = [...newAnswers, ...extraAnswers];
         this.answers = newAnswers;
         console.log(this.answers);
-      })
-      this.page = this.page + 1;
-      event.target.complete();
 
-      // App logic to determine if all data is loaded
-      // and disable the infinite scroll
-      if (this.answers.length === 1000) {
-        event.target.disabled = true;
-      }
+
+        this.page = this.page + 1;
+        event.target.complete();
+
+        // App logic to determine if all data is loaded
+        // and disable the infinite scroll
+        if (this.answers.length === 1000) {
+          event.target.disabled = true;
+        }
+      })
     }, 500);
   }
 

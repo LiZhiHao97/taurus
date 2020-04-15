@@ -12,7 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { EmojiProvider } from './providers/emoji/emoji';
-
+import { SuperTabsModule } from '@ionic-super-tabs/angular';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,7 +23,8 @@ import { EmojiProvider } from './providers/emoji/emoji';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    SuperTabsModule.forRoot(),
   ],
   providers: [
     StatusBar,

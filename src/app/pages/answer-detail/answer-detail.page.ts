@@ -1,3 +1,4 @@
+import { MessageService } from './../../services/message/message.service';
 import { Util } from './../../util';
 import { AuthConstants } from './../../config/auth-constants';
 import { StorageService } from './../../services/storage/storage.service';
@@ -31,7 +32,8 @@ export class AnswerDetailPage implements OnInit {
     private toastService: ToastService,
     private userService: UserService,
     private storageService: StorageService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
@@ -70,6 +72,16 @@ export class AnswerDetailPage implements OnInit {
       ).subscribe(res => {
       this.toastService.presentToast('评论成功');
       this.comments = [...this.comments, res];
+
+      this.messageService.create({
+        content: '评论了你的回答',
+        sender: this.userInfo._id,
+        receiver: this.data.answerer._id,
+        topicId: this.data.topicId._id,
+        answerId: this.data._id
+      }, this.token).subscribe(res => {
+        console.log(res);
+      });
     });
   }
 
@@ -105,6 +117,15 @@ export class AnswerDetailPage implements OnInit {
       this.authService.getUserData();
       this.toastService.presentToast('点赞成功');
 
+      this.messageService.create({
+        content: '点赞了你的回答',
+        sender: this.userInfo._id,
+        receiver: this.data.answerer._id,
+        topicId: this.data.topicId._id,
+        answerId: this.data._id
+      }, this.token).subscribe(res => {
+        console.log(res);
+      });
 
       const newData = JSON.parse(JSON.stringify(this.data));
       newData.voteCount ++;

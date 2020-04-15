@@ -1,0 +1,25 @@
+<ion-item-sliding style="border-bottom: 1px solid #f4f6f9" *ngIf="data">
+  <ion-item lines="none">
+    <div style="display: flex; padding: 10px 0; width: 100%;">
+      <div style="position: relative;" (click)="gotoPersonalCenter()">
+        <span *ngIf="!data.isRead" style="position: absolute; width: 10px; height: 10px; border-radius: 50%; background: #df4f45; right: 0px; top: 1px;"></span>
+        <ion-avatar>
+          <img [src]="data.sender.avatar_url">
+        </ion-avatar>
+      </div>
+      <div  style="flex: 1; padding-left: 14px;">
+        <h5 style="margin-top: 4px; margin-bottom: 6px; font-size: 14px;" (click)="gotoTopicDetailPage()">{{data.topicId.title}}</h5>
+        <p style="font-size: 14px; color: #999;" (click)="gotoAnswerDetailPage()">{{data.sender.name}}{{data.content}}</p>
+        <p style="font-size: 12px; color: #bfbfbf; padding-top: 2px;" (click)="gotoAnswerDetailPage()">{{getDateDiff(data.createdAt)}}</p>
+      </div>
+    </div>
+  </ion-item>
+  <ion-item-options>
+    <ion-item-option *ngIf="!data.isRead" color="primary" (click)="read()">
+      设为已读
+    </ion-item-option>
+    <ion-item-option color="danger" (click)="showAlert()">
+      删除
+    </ion-item-option>
+  </ion-item-options>
+</ion-item-sliding>

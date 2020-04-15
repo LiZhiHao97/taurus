@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { SharePageRoutingModule } from './share-routing.module';
 
 import { SharePage } from './share.page';
+// import { NgxMasonryModule } from 'ngx-masonry';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SharePageRoutingModule
+    SharePageRoutingModule,
+    // NgxMasonryModule
   ],
   declarations: [SharePage]
 })

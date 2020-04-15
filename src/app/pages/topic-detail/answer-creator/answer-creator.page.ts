@@ -1,3 +1,4 @@
+import { MessageService } from './../../../services/message/message.service';
 import { AuthService } from './../../../services/auth/auth.service';
 import { AnswerService } from './../../../services/answer/answer.service';
 import { ToastService } from './../../../services/toast/toast.service';
@@ -12,7 +13,8 @@ import { EditorComponent } from 'src/app/common/editor/editor.component';
 })
 export class AnswerCreatorPage implements OnInit {
   token;
-  topicId;
+  topicData;
+  userInfo;
   answers = [];
   
   @ViewChild(EditorComponent, {static: false}) editor: EditorComponent;
@@ -21,11 +23,13 @@ export class AnswerCreatorPage implements OnInit {
     private toastService: ToastService,
     private answerService: AnswerService,
     private authService: AuthService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
     this.authService.userDatas.subscribe((res: any) => {
       this.token = res.token;
+      this.userInfo = res.user;
     });
   }
 
@@ -39,8 +43,19 @@ export class AnswerCreatorPage implements OnInit {
     if (topicContent === '<p><br></p>') {
         return this.toastService.presentToast('回答内容不得为空');
     }
-    this.answerService.create({content: topicContent}, this.topicId, this.token).subscribe(res => {
+    this.answerService.create({content: topicContent}, this.topicData._id, this.token).subscribe(res => {
       this.toastService.presentToast('回答成功');
+
+      this.messageService.create({
+        content: '回答了你发起的话题',
+        sender: this.userInfo._id,
+        receiver: this.topicData.sponsor._id,
+        topicId: this.topicData._id,
+        answerId: res['_id']
+      }, this.token).subscribe(res => {
+        console.log(res);
+      })
+
       const newAnswers = [...this.answers, res];
       this.navParams.data.modal.dismiss({
         answers: newAnswers

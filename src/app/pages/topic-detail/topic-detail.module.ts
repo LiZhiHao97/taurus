@@ -1,3 +1,4 @@
+import { SharedModule } from './../../shared/shared.module';
 import { EditorModule } from './../../common/editor/editor.module';
 import { AnswerCreatorPage } from './answer-creator/answer-creator.page';
 import { AnswerItemModule } from '../../common/answer-item/answer-item.module';
@@ -18,7 +19,8 @@ import { TopicDetailPage } from './topic-detail.page';
     IonicModule,
     TopicDetailPageRoutingModule,
     AnswerItemModule,
-    EditorModule
+    EditorModule,
+    SharedModule
   ],
   declarations: [
     TopicDetailPage,

@@ -1,3 +1,16 @@
 .searchbar-input {
     background: red!important;
 }
+:host {  
+    --super-tabs-toolbar-background: #fff;
+    --st-indicator-color: #3d8de2;
+}
+
+.label {
+    font-size: 15px;
+    font-weight: 400;
+    color: #314659;
+}
+super-tabs-toolbar.hydrated.ion-color-primary::after {
+    background-image: none;
+}

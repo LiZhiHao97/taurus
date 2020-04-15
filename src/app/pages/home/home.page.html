@@ -5,29 +5,70 @@
 </ion-header>
 
 <ion-content>
-  <Tabs
-    [page]="3"
-    [useOnPan]="false"
-    [activeTab]="index"
-    (onChange)="onChange($event)"
-    (onTabClick)="onTabClick($event)"
-  >
-    <!-- <TabPane [title]="'关注'">
-      <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-        <ion-refresher-content
-          pullingIcon="refresh"
-          refreshingSpinner="crescent">
-        </ion-refresher-content>
-      </ion-refresher>
-    </TabPane> -->
-    <TabPane [title]="'推荐'">
-      <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" *ngIf="recommend.length">
-        <ion-infinite-scroll-content
-          loadingSpinner="crescent"
-          >
-          <div style="text-align: left;">
+  <super-tabs>
+    <super-tabs-toolbar slot="top" style="border-bottom: 1px solid #ededed;">
+      <super-tab-button>
+        <ion-label class="label">关注</ion-label>    
+      </super-tab-button>
+      <super-tab-button (click)="loadRecommend()">
+        <ion-label class="label">推荐</ion-label>    
+      </super-tab-button>
+      <super-tab-button (click)="loadHot()">
+        <ion-label class="label">热榜</ion-label>    
+      </super-tab-button>
+    </super-tabs-toolbar>
+    <super-tabs-container>
+      <super-tab>
+        <ion-content>
+          <ion-infinite-scroll threshold="100px" (ionInfinite)="loadFollowingData($event)" *ngIf="followingTracks.length">
+            <ion-infinite-scroll-content
+              loadingSpinner="crescent"
+              >
+              <div style="text-align: left;">
+                <app-answer-preview
+                  *ngFor="let item of followingTracks"
+                  [topicTitle]="item.title"
+                  [answerContent]="item.content"
+                  [operation]="'回答了问题'"
+                  [operator]="item.answerer"
+                  [voteCount]="item.voteCount"
+                  [commentCount]="item.replyCount"
+                  [time]="item.createdAt"
+                  [answerId]="item._id"
+                  [topicId]="item.topicId"
+                >
+                </app-answer-preview>
+              </div>
+            </ion-infinite-scroll-content>
+          </ion-infinite-scroll>
+        </ion-content>
+      </super-tab>
+      <super-tab>
+        <ion-content>
+          <ion-infinite-scroll threshold="100px" (ionInfinite)="loadRecommendData($event)" *ngIf="recommend.length">
+            <ion-infinite-scroll-content
+              loadingSpinner="crescent"
+              >
+              <div style="text-align: left;">
+                <app-topic-preview
+                  *ngFor="let item of recommend"
+                  [title]="item.title"
+                  [desc]="item.description"
+                  [sponsor]="item.sponsor"
+                  [topicId]="item._id"
+                  [tags]="item.labels"
+                >
+                </app-topic-preview>
+              </div>
+            </ion-infinite-scroll-content>
+          </ion-infinite-scroll>
+        </ion-content>
+      </super-tab>
+      <super-tab>
+        <ion-content>
+          <div *ngIf="hotRank.length">
             <app-topic-preview
-              *ngFor="let item of recommend"
+              *ngFor="let item of hotRank"
               [title]="item.title"
               [desc]="item.description"
               [sponsor]="item.sponsor"
@@ -36,23 +77,10 @@
             >
             </app-topic-preview>
           </div>
-        </ion-infinite-scroll-content>
-      </ion-infinite-scroll>
-    </TabPane>
-    <TabPane [title]="'热门'">
-      <div *ngIf="hotRank.length">
-        <app-topic-preview
-          *ngFor="let item of hotRank"
-          [title]="item.title"
-          [desc]="item.description"
-          [sponsor]="item.sponsor"
-          [topicId]="item._id"
-          [tags]="item.labels"
-        >
-        </app-topic-preview>
-      </div>
-    </TabPane>
-  </Tabs>
+        </ion-content>
+      </super-tab>
+    </super-tabs-container>
+  </super-tabs>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="createTopic()">
       <ion-icon name="add"></ion-icon>

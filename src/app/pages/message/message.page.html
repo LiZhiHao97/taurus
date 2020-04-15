@@ -5,7 +5,44 @@
 </ion-header>
 
 <ion-content>
-  <ion-item button lines="none" detailIcon="none" (click)="gotoGroupPage()">
+  <!-- <ion-item button lines="none" detailIcon="none" (click)="gotoGroupPage()">
     群组
-  </ion-item>
+  </ion-item> -->
+  <ion-card style="margin: 0; border-radius: 0; border-bottom: 1px solid #e1e1e1; box-shadow: none;">
+    <ion-card-content style="padding: 10px 20px;">
+      <div style="display: flex;">
+        <div style="flex: 1;">
+          <h5 style="margin: 0; line-height: 22px; font-size: 14px;">通知列表</h5>
+        </div>
+        <div>
+          <button style="color: #8790a4; background: none; font-size: 14px; font-weight: 500;" (click)="readAll()">
+            全部已读<ion-icon name="checkmark-done-outline" style="font-size: 18px; position: relative; top: 3px;"></ion-icon>
+          </button>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      refreshingSpinner="crescent"
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" *ngIf="message.length">
+    <ion-infinite-scroll-content
+      loadingSpinner="crescent"
+      >
+      <div style="text-align: left;">
+        <ion-list *ngIf="message.length">
+          <app-message-item
+            *ngFor="let item of message"
+            [data]="item"
+            [userInfo]="userInfo"
+            [token]="token"
+          ></app-message-item>
+        </ion-list>
+      </div>
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

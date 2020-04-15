@@ -86,8 +86,13 @@ export class SearchPage implements OnInit {
 
   search() {
     this.topicService.find(this.searchContent).subscribe(res => {
-      this.result = res;
-      console.log(this.result);
+      const newResult = JSON.parse(JSON.stringify(res));
+      for (const item of newResult) {
+        item.title = item.title.replace(this.searchContent, `<span class="high-light">${this.searchContent}</span>`);
+        item.description = item.description.replace(this.searchContent, `<span class="high-light">${this.searchContent}</span>`);
+      }
+      console.log(newResult);
+      this.result = newResult;
       this.switchToShow();
     });
   }

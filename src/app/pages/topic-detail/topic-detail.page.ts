@@ -40,6 +40,7 @@ export class TopicDetailPage implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.topicService.findById(params.id).subscribe(res => {
         this.topicData = res;
+        console.log(this.topicData);
         this.answerService.find(this.topicData._id, 1).subscribe(res2 => {
           this.answers = res2;
         });
@@ -98,7 +99,7 @@ export class TopicDetailPage implements OnInit {
     const modal = await this.modalController.create({
       component: AnswerCreatorPage,
       componentProps: {
-        topicId: this.topicData._id,
+        topicData: this.topicData,
         answers: this.answers
       }
     });

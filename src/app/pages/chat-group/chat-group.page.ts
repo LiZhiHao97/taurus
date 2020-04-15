@@ -1,3 +1,4 @@
+import { Socket } from 'ngx-socket-io';
 import { ChatService } from './../../services/chat/chat.service';
 import { AuthService } from './../../services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -19,13 +20,12 @@ export class ChatGroupPage implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private chatService: ChatService
+    private chatService: ChatService,
+    private socket: Socket
   ) { }
 
   ngOnInit() {
-    this.connection = this.chatService.getMessages().subscribe(message => {
-      this.messages.push(message);
-    });
+    this.socket.connect();
 
     this.authService.userDatas.subscribe((res: any) => {
       this.userInfo = res.user;

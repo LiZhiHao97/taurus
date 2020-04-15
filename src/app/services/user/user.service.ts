@@ -57,4 +57,16 @@ export class UserService {
   listLikingAnswers(id) {
     return this.httpService.get(`users/${id}/likingAnswers`);
   }
+
+  listMessage(id, page) {
+    return  this.httpService.get(`users/${id}/message?page=${page}&per_page=10`);
+  }
+
+  readAll(id, token) {
+    return  this.httpService.post(`users/${id}/message`, {}, token);
+  }
+
+  listFollowingTracks (postData, page) {
+    return this.httpService.post(`users/a/listFollowingTracks?page=${page}&per_page=10`, postData);
+  }
 }

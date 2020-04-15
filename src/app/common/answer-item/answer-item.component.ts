@@ -1,3 +1,4 @@
+import { MessageService } from './../../services/message/message.service';
 import { ToastService } from './../../services/toast/toast.service';
 import { StorageService } from './../../services/storage/storage.service';
 import { AuthConstants } from './../../config/auth-constants';
@@ -22,7 +23,8 @@ export class AnswerItemComponent implements OnInit {
     private authService: AuthService,
     private userService: UserService,
     private storageService: StorageService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
@@ -69,6 +71,15 @@ export class AnswerItemComponent implements OnInit {
       this.authService.getUserData();
       this.toastService.presentToast('点赞成功');
 
+      this.messageService.create({
+        content: '点赞了你的回答',
+        sender: this.userInfo._id,
+        receiver: this.data.answerer._id,
+        topicId: this.data.topicId,
+        answerId: this.data._id
+      }, this.token).subscribe(res => {
+        console.log(res);
+      });
 
       const newData = JSON.parse(JSON.stringify(this.data));
       newData.voteCount ++;
