@@ -1,4 +1,3 @@
-import { Socket } from 'ngx-socket-io';
 import { ChatService } from './../../services/chat/chat.service';
 import { AuthService } from './../../services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,44 +8,57 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat-group.page.scss'],
 })
 export class ChatGroupPage implements OnInit {
-  messages = [];
-  connection;
-
-
   userInfo;
   token;
   isOpenEmojiPicker = false;
   chatContent: string = '';
+  isJoin = false;
+
+  index = 0;
+
+  messages = [];
+  connection;
 
   constructor(
     private authService: AuthService,
-    private chatService: ChatService,
-    private socket: Socket
+    private chatService: ChatService
   ) { }
 
   ngOnInit() {
-    this.socket.connect();
-
-    this.authService.userDatas.subscribe((res: any) => {
+    this.authService.userDatas.subscribe(async (res: any) => {
       this.userInfo = res.user;
       this.token = res.token;
+
+      console.log(this.userInfo);
+      if (this.userInfo && this.index === 0) {
+        this.index++;
+        this.connection = await this.chatService.getMessages().subscribe(message => {
+          this.messages.push(message);
+          console.log(this.messages);
+        });
+        if (!this.isJoin) {
+          this.chatService.sendMessage({type: 'join', user: this.userInfo.name});
+          this.isJoin = !this.isJoin;
+        }
+      }
     });
   }
 
   ngOnDestroy() {
+    this.chatService.sendMessage({type: 'leave', user: this.userInfo.name});
     this.connection.unsubscribe();
   }
 
   switchEmojiPicker() {
     this.isOpenEmojiPicker = !this.isOpenEmojiPicker;
   }
-  
+
   onChanged(content) {
     this.chatContent = this.chatContent + content;
   }
 
   chat() {
-    this.chatService.sendMessage(this.chatContent);
+    this.chatService.sendMessage({type: 'chat', user: this.userInfo, content: this.chatContent});
     this.chatContent = '';
   }
 }

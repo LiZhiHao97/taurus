@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-toolbar style="padding-top: 10px;">
-    <ion-searchbar (ionFocus)="gotoSearchPage()" color="primary" animated=true placeholder="搜索话题、用户、标签" style="width: 90%; float: left;"></ion-searchbar>
+  <ion-toolbar>
+    <ion-searchbar (ionFocus)="gotoSearchPage()" color="primary" animated=true placeholder="搜索话题、用户、标签" style="width: 90%; float: left; margin-top: 10px;"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
@@ -67,15 +67,22 @@
       <super-tab>
         <ion-content>
           <div *ngIf="hotRank.length">
-            <app-topic-preview
-              *ngFor="let item of hotRank"
-              [title]="item.title"
-              [desc]="item.description"
-              [sponsor]="item.sponsor"
-              [topicId]="item._id"
-              [tags]="item.labels"
+            <div style="display: flex;"
+            *ngFor="let item of hotRank"
             >
-            </app-topic-preview>
+              <div class="rank" [ngStyle]="{'color': hotRank.indexOf(item) < 3 ? '#df4f45' : '#bea571'}">
+                {{hotRank.indexOf(item) + 1}}
+              </div>
+              <app-topic-preview
+                style="flex: 1"
+                [title]="item.title"
+                [desc]="item.description"
+                [sponsor]="item.sponsor"
+                [topicId]="item._id"
+                [tags]="item.labels"
+              >
+              </app-topic-preview>
+            </div>
           </div>
         </ion-content>
       </super-tab>

@@ -30,12 +30,15 @@ export class TopicService {
     return this.httpService.post('topics/users', postData);
   }
 
-
   create(postData: any, token) {
     return this.httpService.post('topics', postData, token);
   }
 
   findById(id) {
     return this.httpService.get(`topics/${id}?fields=labels`);
+  }
+
+  visit(id, postData, token) {
+    return this.httpService.patch(`topics/${id}/visit`, postData, token);
   }
 }

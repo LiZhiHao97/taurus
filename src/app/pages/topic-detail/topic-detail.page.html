@@ -38,16 +38,16 @@
     </div>
     <ion-row style="border-top: 1px solid #f3f5f8; padding: 10px; color: #99a4b0;">
       <ion-col size="4" style="text-align: center;">
-        <ion-icon name="flame-outline" style="font-size: 24px; margin-right: 2px;"></ion-icon>
-        <span style="font-size: 18px; position: relative; bottom: 5px;margin: 2px;">87</span>
+        <ion-icon name="flame" style="font-size: 24px; margin-right: 2px; color: #e45d54;"></ion-icon>
+        <span style="font-size: 18px; position: relative; bottom: 5px;margin: 2px; color: #e45d54;">{{topicData.hot}}</span>
       </ion-col>
       <ion-col size="4" style="text-align: center;">
         <ion-icon name="eye-outline" style="font-size: 24px; margin-right: 2px;"></ion-icon>
-        <span  style="font-size: 18px; position: relative; bottom: 5px;margin: 2px;">96</span>
+        <span  style="font-size: 18px; position: relative; bottom: 5px;margin: 2px;">{{topicData.visitorCount}}</span>
       </ion-col>
       <ion-col size="4" style="text-align: center;">
         <ion-icon name="person-add-outline" style="font-size: 24px; margin-right: 2px;"></ion-icon>
-        <span style="font-size: 18px; position: relative; bottom: 5px;margin: 2px;">52</span>
+        <span style="font-size: 18px; position: relative; bottom: 5px;margin: 2px;">{{topicData.followerCount}}</span>
       </ion-col>
     </ion-row>
   </ion-card>

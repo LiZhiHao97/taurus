@@ -37,5 +37,24 @@ export class SharePage implements OnInit {
       this.shares = [data.newShare, ...newShares];
     }
   }
-  
+
+  loadData(event) {
+    setTimeout(() => {
+      this.shareService.find(this.page + 1).subscribe(res => {
+        let newShares = JSON.parse(JSON.stringify(this.shares));
+        const extraShare = JSON.parse(JSON.stringify(res));
+        newShares = [...newShares, ...extraShare];
+        this.shares = newShares;
+
+        this.page = this.page + 1;
+        event.target.complete();
+
+        // App logic to determine if all data is loaded
+        // and disable the infinite scroll
+        if (this.shares.length === 1000) {
+          event.target.disabled = true;
+        }
+      });
+    }, 500);
+  }
 }

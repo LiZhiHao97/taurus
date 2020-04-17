@@ -1,3 +1,4 @@
+import { ChatItemModule } from './../../common/chat-item/chat-item.module';
 import { EmojipickerModule } from './../../common/emojipicker/emojipicker.module';
 import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
@@ -17,7 +18,8 @@ import { ChatGroupPage } from './chat-group.page';
     IonicModule,
     ChatGroupPageRoutingModule,
     SharedModule,
-    EmojipickerModule
+    EmojipickerModule,
+    ChatItemModule
   ],
   declarations: [ChatGroupPage]
 })

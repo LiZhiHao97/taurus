@@ -5,9 +5,6 @@
 </ion-header>
 
 <ion-content>
-  <!-- <ion-item button lines="none" detailIcon="none" (click)="gotoGroupPage()">
-    群组
-  </ion-item> -->
   <ion-card style="margin: 0; border-radius: 0; border-bottom: 1px solid #e1e1e1; box-shadow: none;">
     <ion-card-content style="padding: 10px 20px;">
       <div style="display: flex;">
@@ -29,10 +26,23 @@
     >
     </ion-refresher-content>
   </ion-refresher>
-  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" *ngIf="message.length">
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content
       loadingSpinner="crescent"
       >
+      <ion-item button lines="none" detailIcon="none" (click)="gotoGroupPage()" style="margin-bottom: 1px; --background: #f6f6f6;">
+        <div style="display: flex; padding: 10px 0; width: 100%;">
+          <div style="position: relative;">
+            <ion-avatar>
+              <img src="https://pic1.zhimg.com/v2-40cc57d7a7f9fc24711c601615c9fb57_60w.png">
+            </ion-avatar>
+          </div>
+          <div style="flex: 1; padding-left: 14px;">
+            <h5 style="margin-top: 4px; margin-bottom: 6px; font-size: 14px;">群组</h5>
+            <p style="font-size: 14px; color: #999;">快来和大家一起讨论吧</p>
+          </div>
+        </div>
+      </ion-item>
       <div style="text-align: left;">
         <ion-list *ngIf="message.length">
           <app-message-item

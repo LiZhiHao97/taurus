@@ -1,0 +1,25 @@
+<div class="message" *ngIf="data.type === 'chat' && userInfo._id !== data.user._id">
+  <div class="photo" [ngStyle]="{'background-image': 'url(' + data.user.avatar_url + ')'}">
+    <div class="online"></div>
+  </div>
+  <p class="text">
+    {{data.content}}
+  </p>
+</div>
+<div class="message text-only" *ngIf="data.type === 'chat' && userInfo._id === data.user._id">
+  <div class="response">
+    <p class="text">
+      {{data.content}}
+    </p>
+  </div>
+</div>
+<div style="text-align: center; margin-bottom: 14px;" *ngIf="data.type === 'leave'">
+  <span class="join-leave-block">
+    李祉昊离开了聊天室
+  </span>
+</div>
+<div style="text-align: center; margin-bottom: 14px;" *ngIf="data.type === 'join'">
+  <span class="join-leave-block">
+    李祉昊加入了聊天室
+  </span>
+</div>

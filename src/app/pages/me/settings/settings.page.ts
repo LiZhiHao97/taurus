@@ -1,3 +1,4 @@
+import { LoadingController } from '@ionic/angular';
 import { AuthConstants } from './../../../config/auth-constants';
 import { StorageService } from './../../../services/storage/storage.service';
 import { UserService } from './../../../services/user/user.service';
@@ -21,7 +22,8 @@ export class SettingsPage implements OnInit {
     private router: Router,
     private _modal: ModalService,
     private userService: UserService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private loadingController: LoadingController,
   ) { }
 
   ngOnInit() {
@@ -45,6 +47,18 @@ export class SettingsPage implements OnInit {
     ]);
   }
 
+  async clearCache() {
+    const loading = await this.loadingController.create({
+      message: '清除中',
+      duration: 2000
+    });
+    await loading.present();
+    await this.storageService.store(AuthConstants.TRACK, {tracks: []});
+    this.authService.getTracks();
+    await loading.onDidDismiss();
+    this.toastService.presentToast('清除成功');
+  }
+  
   showMsg(msg) {
     this.toastService.presentToast(msg);
   }

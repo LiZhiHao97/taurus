@@ -9,8 +9,16 @@
 
 
 <ion-content>
-  <div *ngIf="userInfo">
-
+  <div class="chat">
+    <div class="messages-chat" *ngIf="messages.length">
+      <app-chat-item
+        *ngFor="let item of messages"
+        [data]="item"
+        [userInfo]="userInfo"
+      >
+    
+      </app-chat-item>
+    </div>
   </div>
 </ion-content>
 

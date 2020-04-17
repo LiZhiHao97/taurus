@@ -6,11 +6,19 @@
 
 <ion-content>
   <div class="collection ion-padding" *ngIf="shares.length">
-    <app-share-preview 
-      *ngFor="let item of shares"
-      [data]="item"
-    >
-    </app-share-preview>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="crescent"
+        >
+        <div style="text-align: left;">
+          <app-share-preview 
+            *ngFor="let item of shares"
+            [data]="item"
+          >
+          </app-share-preview>
+        </div>
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
   </div>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="createShare()">

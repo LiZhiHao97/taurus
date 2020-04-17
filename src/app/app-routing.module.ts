@@ -51,6 +51,10 @@ const routes: Routes = [
   },
   {
     path: 'chat/:id',
+    resolve: {
+      userData: UserDataResolver,
+      tracks: UserTrackResolver
+    },
     loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule)
   },
   {
@@ -59,6 +63,10 @@ const routes: Routes = [
   },
   {
     path: 'chat-group',
+    resolve: {
+      userData: UserDataResolver,
+      tracks: UserTrackResolver
+    },
     loadChildren: () => import('./pages/chat-group/chat-group.module').then( m => m.ChatGroupPageModule)
   },
   {

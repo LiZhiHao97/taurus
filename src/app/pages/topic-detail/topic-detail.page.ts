@@ -58,6 +58,16 @@ export class TopicDetailPage implements OnInit {
   }
 
   ngOnDestroy() {
+    this.topicService.visit(
+      this.topicData._id,
+      {
+        hot: (this.topicData.visitorCount + 1) + this.topicData.followerCount * 5,
+        visitorCount: (this.topicData.visitorCount + 1)
+      },
+      this.token
+    ).subscribe(res => {
+      console.log('success')
+    })
     if (!this.tracks) {
       this.storageService.store(AuthConstants.TRACK, {tracks: [this.topicData._id]});
     } else {
@@ -80,6 +90,10 @@ export class TopicDetailPage implements OnInit {
       this.storageService.store(AuthConstants.AUTH, {token: this.token, user: newUserInfo});
       this.authService.getUserData();
       this.toastService.presentToast('关注话题成功');
+
+      const newTopicData = JSON.parse(JSON.stringify(this.topicData));
+      newTopicData.followerCount = newTopicData.followerCount + 1;
+      this.topicData = newTopicData;
     });
   }
 
@@ -92,6 +106,10 @@ export class TopicDetailPage implements OnInit {
       this.storageService.store(AuthConstants.AUTH, {token: this.token, user: newUserInfo});
       this.authService.getUserData();
       this.toastService.presentToast('取消关注话题成功');
+
+      const newTopicData = JSON.parse(JSON.stringify(this.topicData));
+      newTopicData.followerCount = newTopicData.followerCount - 1;
+      this.topicData = newTopicData;
     });
   }
 

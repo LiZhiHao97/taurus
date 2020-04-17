@@ -1,11 +1,11 @@
 <ion-header>
-  <ion-toolbar style="padding-top: 16px;">
-    <ion-buttons slot="start">
+  <ion-toolbar>
+    <ion-buttons slot="start" style="margin-top: 12px;">
       <ion-button color="light" (click)="doClose()">
         <ion-icon name="arrow-back" style="color: #999"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-searchbar placeholder="搜索标签" (ionChange)="change()" [(ngModel)]="searchContent"></ion-searchbar>
+    <ion-searchbar placeholder="搜索标签" (ionChange)="change()" [(ngModel)]="searchContent" style="margin-top: 12px;"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 

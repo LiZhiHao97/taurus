@@ -1,3 +1,5 @@
+import { NavParams } from '@ionic/angular';
+import { Router } from '@angular/router';
 import { AuthConstants } from './../../config/auth-constants';
 import { ToastService } from './../../services/toast/toast.service';
 import { StorageService } from './../../services/storage/storage.service';
@@ -19,7 +21,9 @@ export class UserPreviewComponent implements OnInit {
     private userService: UserService,
     private authService: AuthService,
     private storageService: StorageService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private router: Router,
+    private navParams: NavParams,
   ) { }
 
   ngOnInit() {}
@@ -46,5 +50,8 @@ export class UserPreviewComponent implements OnInit {
       this.toastService.presentToast('取消关注成功');
     });
   }
-  
+
+  gotoPersonalCenter() {
+    this.router.navigate([`/personal-center/${this.data._id}`]);
+  }
 }

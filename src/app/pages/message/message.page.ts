@@ -41,7 +41,7 @@ export class MessagePage implements OnInit {
   }
 
   gotoGroupPage() {
-    this.router.navigate(['chat-group']);
+    this.router.navigate(['/chat-group']);
   }
 
   doRefresh(event) {

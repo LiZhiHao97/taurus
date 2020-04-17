@@ -4,7 +4,7 @@ import { UserService } from './../../../services/user/user.service';
 import { ToastService } from './../../../services/toast/toast.service';
 import { PhotoService } from './../../../services/photo/photo.service';
 import { Component, OnInit } from '@angular/core';
-import { ActionSheetController, NavParams } from '@ionic/angular';
+import { ActionSheetController, NavParams, LoadingController } from '@ionic/angular';
 import { Util } from '../../../util';
 import { AuthConstants } from 'src/app/config/auth-constants';
 
@@ -25,7 +25,8 @@ export class InfoEditorPage implements OnInit {
     private toastService: ToastService,
     private userService: UserService,
     private storageService: StorageService,
-    private authService: AuthService
+    private authService: AuthService,
+    private loadingController: LoadingController
   ) { }
 
   ngOnInit() {
@@ -112,16 +113,23 @@ export class InfoEditorPage implements OnInit {
     console.log(params);
   }
 
-  uploadImage() {
+  async uploadImage() {
     if (!this.files.length) {
       return this.toastService.presentToast('请先上传头像');
     }
+    const loading = await this.loadingController.create({
+      message: '上传中',
+      duration: 2000
+    });
+    await loading.present();
+
     const file = Util.dataURLtoFile(this.files[0].url);
-    this.photoService.uploadImage(file).subscribe(res => {
+    this.photoService.uploadImage(file).subscribe(async res => {
       const newUserInfo = JSON.parse(JSON.stringify(this.userInfo));
       newUserInfo.avatar_url = res['url'].replace('localhost:8100', 'localhost:8000');
       this.files = [];
       this.isShowModal = false;
+      await loading.onDidDismiss();
       this.toastService.presentToast('上传成功');
       this.userInfo = newUserInfo;
     });

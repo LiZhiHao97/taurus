@@ -1,15 +1,13 @@
 <ion-header>
-  <ion-toolbar *ngIf="shareData" style="height: 60px; padding-top: 10px;">
-    <ion-buttons slot="start">
+  <ion-toolbar *ngIf="shareData">
+    <ion-buttons slot="start" style="margin: 10px 0;">
       <ion-back-button text="" color="dark" defaultHref="/tabs/share"></ion-back-button>
-    </ion-buttons>
-    <ion-buttons slot="start">
       <ion-button style="padding-left: 4px;" (click)="gotoPersonalCenter()">
         <img [src]="shareData.author.avatar_url" style="width: 30px; height: 30px; border-radius: 50%;">
         <span style="font-size: 14px; color: #353535; margin-left: 12px;">{{shareData.author.name}}</span>
       </ion-button>
     </ion-buttons>
-    <ion-buttons slot="end" style="padding-right: 6px;">
+    <ion-buttons slot="end" style="padding-right: 6px; margin: 10px 0;">
       <div *ngIf="userInfo._id !== shareData.author._id">
         <div *ngIf="this.userInfo.following.indexOf(shareData.author._id) === -1;then follow else unfollow"></div>
       </div>
@@ -26,11 +24,14 @@
     (afterChange)="afterChange($event)"
   >
     <CarouselSlide *ngFor="let item of shareData.covers">
-      <div style="display: inline-block; width: 100%;" style="height: 364px;">
-        <img
+      <div class="img-container" style="display: inline-block; width: 100%;">
+        <div class="img" [ngStyle]="{'background-image': 'url('+ item + ')'}">
+
+        </div>
+        <!-- <img
           [src]="item"
-          style=" pointer-events: none; width: 100%;"
-        />
+          style=" pointer-events: none;"
+        /> -->
       </div>
     </CarouselSlide>
   </Carousel>
