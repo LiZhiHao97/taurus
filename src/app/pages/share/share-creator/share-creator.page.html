@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="light" (click)="doClose()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button color="light" (click)="create()">
+        发布
+      </ion-button>
+    </ion-buttons>
+    <ion-title slot="start">创建话题</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="padding: 20px 0 10px 0;">
+    <div style="padding-left: 6px; padding-bottom: 12px;">
+      <button style="background: #fff; font-size: 18px; color: #999;" (click)="uploadImage()">
+        上传封面
+        <ion-icon name="cloud-upload-outline"></ion-icon>
+      </button>
+    </div>
+    <ImagePicker
+      [files]="files"
+      length=5
+      multiple=false
+      [selectable]="files.length < 5"
+      (onChange)="fileChange($event)"
+      (onImageClick)="imageClick($event)"
+    ></ImagePicker>
+  </div>
+  <div style="height: 5px; padding: 0 0 10px 0">
+    <ion-progress-bar type="indeterminate" *ngIf="loading"></ion-progress-bar>
+  </div>
+  <InputItem
+    [clear]="true"
+    [placeholder]="'添加标题'"
+    [moneyKeyboardAlign]="'left'"
+    [content]="titleIcon"
+    [(ngModel)]="title"
+  >
+  </InputItem>
+  <TextareaItem [title]="descIcon" [autoHeight]="true" [maxlength]="150" [labelNumber]="5" [placeholder]="'添加正文'" [(ngModel)]="content"> </TextareaItem>
+</ion-content>
+
+<ng-template #titleIcon>
+  <ion-icon name="reorder-two" style="font-size: 20px; color:#999;"></ion-icon>
+</ng-template>
+<ng-template #descIcon>
+  <ion-icon name="create" style="font-size: 20px; color:#999"></ion-icon>
+</ng-template>

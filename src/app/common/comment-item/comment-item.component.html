@@ -16,7 +16,7 @@
           {{data.content}}
         </div>
         <div class="reply" *ngIf="subComments.length">
-          <div *ngFor="let subComment of subComments" (click)="showModal2(subComment.commentator._id)" style="padding: 2px 0;">
+          <div *ngFor="let subComment of subComments" (click)="showModal2(subComment.commentator._id, subComment.commentator.name)" style="padding: 2px 0;">
             <span style="color: #000;">
               {{subComment.commentator.name}}
               <span *ngIf="subComment.replyTo._id !== data.commentator._id" style="color: #999">回复</span>
@@ -46,7 +46,7 @@
   </div>
 </Modal>
 
-<Modal *ngIf="data" [(ngModel)]="isShowModal2" [transparent]="true" [title]="'回复 ' + data.commentator.name" [footer]="footer">
+<Modal *ngIf="data" [(ngModel)]="isShowModal2" [transparent]="true" [title]="'回复 ' + curName" [footer]="footer">
   <div [ngStyle]="{ height: 100, overflow: 'scroll' }">
     <TextareaItem
       [placeholder]="'请输入回复的内容'"

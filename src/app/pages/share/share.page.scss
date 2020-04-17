@@ -1,1 +1,17 @@
-.masonry-item { width: 200px; }
+.collection {
+    @media (max-width: 779px) and (min-width: 0px) {
+        column-count: 2;
+    }
+
+    @media (max-width: 1039px) and (min-width: 780px) {
+        column-count: 3;
+    }
+
+    @media (max-width: 1299) and (min-width: 1040px) {
+        column-countt: 4;
+    }
+
+    @media (min-width: 1300px) {
+        column-count: 5;
+    }
+}

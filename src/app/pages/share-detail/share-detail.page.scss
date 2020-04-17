@@ -1,0 +1,16 @@
+ion-toolbar {
+    --background: #fff!important;
+}
+
+ion-content {
+    --background: #fff!important;
+}
+
+ion-footer {
+    ion-toolbar {
+        --background: #fff!important;
+    }
+}
+.footer {
+    box-shadow: 2px 0 2px rgba(0, 0, 0, .2);
+}

@@ -6,6 +6,16 @@ export class Util {
         return fd;
     }
 
+    public static dataURLtoFile2(base64Datas) {
+        let index = 1;
+        const fd = new FormData(document.forms[0]);
+        for (const base64Data of base64Datas) {
+            const blob = this.getBlobBydataURI(base64Data, 'image/jpeg');
+            fd.append(`file${index++}`, blob);
+        }
+        return fd;
+    }
+
     public static getBlobBydataURI(dataURI,type) {
         const binary = atob(dataURI.split(',')[1]);
         const array = [];

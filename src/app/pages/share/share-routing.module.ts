@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: SharePage
+  },
+  {
+    path: 'share-creator',
+    loadChildren: () => import('./share-creator/share-creator.module').then( m => m.ShareCreatorPageModule)
   }
 ];
 

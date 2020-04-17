@@ -60,6 +60,14 @@ const routes: Routes = [
   {
     path: 'chat-group',
     loadChildren: () => import('./pages/chat-group/chat-group.module').then( m => m.ChatGroupPageModule)
+  },
+  {
+    path: 'share-detail/:id',
+    resolve: {
+      userData: UserDataResolver,
+      tracks: UserTrackResolver
+    },
+    loadChildren: () => import('./pages/share-detail/share-detail.module').then( m => m.ShareDetailPageModule)
   }
 ];
 @NgModule({

@@ -1,0 +1,17 @@
+
+<div class="collection-item" text-center (click)="gotoShareDetailPage()">
+  <img [src]="data.covers[0]"/>
+  <h5 class="title" style="margin-top: 10px; font-weight: 500; color: #333;">
+    {{data.title}}
+  </h5>
+  <div style="display: flex;">
+    <div style="display: flex;">
+      <img [src]="data.author.avatar_url" style="border-radius: 50%; width: 20px; height: 20px;">
+      <div style="padding-top: 2px; padding-left: 8px; color: #6b6b6b; font-size: 12px;">{{data.author.name}}</div>
+    </div>
+    <div style="flex: 1; text-align: right; color: #6b6b6b; position: relative; top: 1px;">
+      <ion-icon name="heart-outline" style="position: relative; top: 2px;"></ion-icon>
+      <span>{{data.voteCount}}</span>
+    </div>
+  </div>
+</div>

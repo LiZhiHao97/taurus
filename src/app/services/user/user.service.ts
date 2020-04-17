@@ -54,6 +54,14 @@ export class UserService {
     return this.httpService.delete(`users/unlikingAnswers/${aid}`, token);
   }
 
+  likingShares(sid, token) {
+    return this.httpService.put(`users/likingShare/${sid}`, token);
+  }
+
+  unlikingShares(sid, token) {
+    return this.httpService.delete(`users/unlikingShare/${sid}`, token);
+  }
+
   listLikingAnswers(id) {
     return this.httpService.get(`users/${id}/likingAnswers`);
   }

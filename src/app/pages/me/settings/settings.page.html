@@ -8,27 +8,27 @@
 </ion-header>
 
 <ion-content>
-  <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="gotoPage('settings')">
+  <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="showEmailPrompt()">
     <div class="medium">
       邮箱
     </div>
     <div class="right" style="width: 200px;">
-      <span class="list-count">
-        940166841@qq.com
+      <span class="list-count" *ngIf="userInfo">
+        {{userInfo.email}}
       </span>
     </div>
   </ion-item>
-  <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="gotoPage('settings')">
+  <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="showPhonePrompt()">
     <div class="medium">
       手机号
     </div>
     <div class="right" style="width: 200px;">
-      <span class="list-count">
-        13868224404
+      <span class="list-count" *ngIf="userInfo">
+        {{userInfo.phone}}
       </span>
     </div>
   </ion-item>
-  <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="gotoPage('settings')">
+  <ion-item button detail=false lines='none' style="margin-bottom: 1px;">
     <div class="medium">
       修改密码
     </div>
@@ -38,7 +38,7 @@
   <ion-item button detail=false lines='none' style="margin-top: 10px; margin-bottom: 1px;" (click)="showMsg('清除成功')">
     清除缓存
   </ion-item>
-  <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="gotoPage('settings')">
+  <ion-item button detail=false lines='none' style="margin-bottom: 1px;">
     <div class="medium">
       不接收他人私信
     </div>
@@ -46,7 +46,7 @@
       <ion-toggle color="primary" (ionChange)="toggleChange()"></ion-toggle>
     </div>
   </ion-item>
-  <ion-item button detail=false lines='none' style="margin-bottom: 1px;" (click)="gotoPage('settings')">
+  <ion-item button detail=false lines='none' style="margin-bottom: 1px;">
     <div class="medium">
       移动网络下首页不显示图片
     </div>

@@ -105,7 +105,9 @@ export class TopicDetailPage implements OnInit {
     });
     await modal.present();
     const { data } = await modal.onDidDismiss();
-    this.answers = [...data.answers];
+    if (data.answers) {
+      this.answers = [...data.answers];
+    }
   }
 
 

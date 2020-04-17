@@ -30,11 +30,15 @@ export class PhotoService {
     return this.httpService.postFile('upload', postData);
   }
 
+  uploadImages(postData) {
+    return this.httpService.postFile('uploadImages', postData);
+  }
+
   private async readAsBase64(cameraPhoto: CameraPhoto) {
     // Fetch the photo, read as a blob, then convert to base64 format
     const response = await fetch(cameraPhoto.webPath!);
     const blob = await response.blob();
-  
+
     return await this.convertBlobToBase64(blob) as string;
   }
 

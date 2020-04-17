@@ -34,7 +34,9 @@ export class AnswerCreatorPage implements OnInit {
   }
 
   doClose() {
-    this.navParams.data.modal.dismiss();
+    this.navParams.data.modal.dismiss({
+      answers: undefined
+    });
   }
 
   create() {

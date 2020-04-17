@@ -1,0 +1,38 @@
+.collection-item {
+    background: #fff;
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 12px 12px 12px 12px;
+    border-radius: 12px;
+    cursor: zoom-in;
+    img {
+        width: 100%;
+        border-radius: 12px;
+    }
+}
+
+.collection-item:hover {
+    animation: tapAnimation 0.25s cubic-bezier(0.31, 1, 0.34, 1) forwards;
+}
+
+@keyframes tapAnimation {
+    0% {
+        opacity: 1;
+        transform: scale(0.96);
+    }
+    100% {
+        opacity: 1;
+        background: rgba(0, 0, 0, 0.05);
+        transform: scale(1);
+    }
+}
+
+.title {
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; 
+    word-wrap:break-word;
+    word-break:break-all;
+}
